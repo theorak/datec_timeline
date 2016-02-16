@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-02-01T17:17:17Z" product-name="datec_timeline">
+		<header/>
+		<body>
+			<trans-unit id="tx_datectimeline_domain_model_date">
+				<target>Termin</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date_plural">
+				<target>Termine</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.title">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.description">
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.cruser">
+				<target>Ersteller</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.start">
+				<target>Von</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.stop">
+				<target>Bis</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.reminderStart">
+				<target>Erinnerung ab</target>
+			</trans-unit>				
+			<trans-unit id="tx_datectimeline_domain_model_date.participants">
+				<target>Teilnehmer</target>
+			</trans-unit>			
+			
+			<trans-unit id="tx_datectimeline.errors.dbError">
+				<target>Fehler beim Zugriff auf die Datenbank!</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.errors.noDates">
+				<target>Keine Termine gefunden.</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.errors.noAccess">
+				<target>Sie haben nicht genügend Rechte für diese Aktion.</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_datectimeline.messages.dateCreated">
+				<target>Termin erstellt.</target>
+			</trans-unit>	
+			<trans-unit id="tx_datectimeline.messages.dateSaved">
+				<target>Termin gespeichert.</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.messages.dateDeleted">
+				<target>Termin entfernt.</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_datectimeline.tasks.reminderTask.name">
+				<target>Datec Timeline - Erinnerungs-Emails Task</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.reminderTask.description">
+				<target>Versendet Erinnerungs-Emails an Ersteller und Teilnehmer für Datec Timeline Termine.</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_datectimeline.mail.dearSirOrMadam">
+				<target>Sehr geehrte/r Dame oder Herr,</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.regards">
+				<target>Haben Sie einen schönen Tag!</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.reminderSubject">
+				<target>Datec Timeline - Terminerinnerung</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.reminderMsg">
+				<target>Sie haben einen bevorstehenden Termin und sind entweder Ersteller oder eingeladener Teilnehmer.</target>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

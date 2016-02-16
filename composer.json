@@ -1,0 +1,34 @@
+{
+  "name": "datec/datec-timeline",
+  "type": "typo3-cms-extension",
+  "description": "",
+  "keywords": [
+    "form",
+    "generic",
+    "application",
+    "content",
+    "elements"
+  ],
+  "homepage": "http://www.datec-schmidt.de/",
+  "authors": [
+    {
+      "name": "Philipp Roensch",
+      "email": "p.roensch@datec-schmidt.de",
+      "role": "Developer",
+      "homepage": "http://www.datec-schmidt.de/"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/theorak/datec_timeline/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "Datec\\DatecTimeline\\": "Classes/"
+    }
+  },
+  "autoload-dev": {
+	"psr-4": {
+      "Datec\\DatecTimeline\\Tests\\": "Tests/"
+	}
+  }
+}

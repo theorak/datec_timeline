@@ -1,0 +1,47 @@
+<div class="tx-datec-timeline-date" class="date-{creator.username}">
+	<f:comment>This is a render example, please change the template paths via TS and adjust this template to your liking.</f:comment>
+	<div class="tx-datec-timeline-date-desciption">
+		{date.title}
+	</div>
+	<div class="tx-datec-timeline-date-desciption">
+		{date.description}
+	</div>
+	<div class="tx-datec-timeline-date-creator">
+		<f:translate key="tx_datectimeline_domain_model_date.cruser" />:
+		<f:if condition="{creator.lastName}">
+			<f:then>
+				{creator.lastName}
+				<f:if condition="{creator.firstName}">
+				, {creator.firstName}
+				</f:if>
+			</f:then>
+			<f:else>
+				{creator.username}
+			</f:else>
+		</f:if>
+	</div>
+	<f:if condition="{date.participants}">
+		<div class="tx-datec-timeline-date-participants">
+			<f:translate key="tx_datectimeline_domain_model_date.participants" />:
+			<f:for each="{date.participants}" as="participant" iteration="iterator">
+				<f:if condition="{participant.lastName}">
+					<f:then>
+						{participant.lastName}
+						<f:if condition="{participant.firstName}">
+						, {participant.firstName}
+						</f:if>
+					</f:then>
+					<f:else>
+						{participant.username}
+					</f:else>
+				</f:if><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
+			</f:for>
+		</div>
+	</f:if>
+	<div class="tx-datec-timeline-date-startStop">
+		<f:format.date format="{settings.display.dateFormat}">{date.start}</f:format.date>
+		<f:if condition="{date.stop}">
+		<br /><f:format.date format="{settings.display.dateFormat}">{date.stop}</f:format.date>
+		</f:if>
+	</div>
+</div>

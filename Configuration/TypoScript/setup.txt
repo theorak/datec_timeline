@@ -1,0 +1,66 @@
+page {
+	includeCSS {
+		datec_timeline_style = EXT:datec_timeline/Resources/Public/Css/datec_timeline_style.css
+		fullcalendar = EXT:datec_timeline/Resources/Public/JavaScript/fullcalendar-2.6.0/fullcalendar.css
+		datetimepicker = EXT:datec_timeline/Resources/Public/JavaScript/datetimepicker-master/jquery.datetimepicker.css
+	}
+	includeJSFooterlibs  {
+		moment = EXT:datec_timeline/Resources/Public/JavaScript/fullcalendar-2.6.0/lib/moment.min.js
+    	fullcalendar = EXT:datec_timeline/Resources/Public/JavaScript/fullcalendar-2.6.0/fullcalendar.min.js    	
+    	jQuery-langs = EXT:datec_timeline/Resources/Public/JavaScript/fullcalendar-2.6.0/lang-all.js 	
+    	datetimepicker = EXT:datec_timeline/Resources/Public/JavaScript/datetimepicker-master/build/jquery.datetimepicker.full.min.js
+    	datec_timeline_script = EXT:datec_timeline/Resources/Public/JavaScript/datec_timeline_script.js
+    }
+}
+
+
+ajaxCallDatecTimeline = PAGE
+ajaxCallDatecTimeline {
+typeNum = 2220
+	config.disableAllHeaderCode = 1
+	config.metaCharset = UTF-8
+    10 = COA
+    10 < tt_content.list.20.datectimeline_timeline
+}
+
+plugin.tx_datectimeline {
+	view {
+		templateRootPath = {$plugin.tx_datectimeline.view.templateRootPath}
+		templateRootPaths {
+			10 = {$plugin.tx_datectimeline.view.templateRootPath}
+		}
+		partialRootPaths {
+			10 = {$plugin.tx_datectimeline.view.partialRootPath}
+		}
+		layoutRootPaths {
+			10 = {$plugin.tx_datectimeline.view.layoutRootPath}
+		}
+	}
+	persistence {
+		classes {
+		    \Date\DatecTimeline\Domain\Model\Date {
+		        mapping {
+		            columns {
+		            	crdate.mapOnProperty = crdate
+		            	cruser_id.mapOnProperty = cruserId  
+		            	title.mapOnProperty = title   		            	
+		            }  
+		        }
+		    }
+		}
+		storagePid = {$plugin.tx_datectimeline.persistence.storagePid}
+	}
+    settings {
+        storagePid = {$plugin.tx_datectimeline.persistence.storagePid}
+        reminderMailAfterCreation = 1
+        langOptions = 1
+        mail {
+        	internMailFrom = timeline@no-reply.com
+        	internMailFromName = Datec Timeline
+        }
+        display {
+        	dateFormat = d.m.Y H:i
+        	dateFormatJS = dd. MM yy
+        }
+    }
+}

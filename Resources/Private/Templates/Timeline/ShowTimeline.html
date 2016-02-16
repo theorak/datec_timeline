@@ -1,0 +1,16 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<input type="hidden" id="tx-datec-timeline-dateFormat" value="{settings.display.dateFormat}" />
+<input id="tx-datec-blog-pageId" type="hidden" name="tx_datectimeline_timeline[pageId]" value="{pageId}" />
+<f:if condition="{settings.langOptions}">
+	<div>Language: <select id="tx-datec-timeline-lang-selector"></select></div>
+</f:if>
+<div id="tx-datec-timeline-info">
+	<f:flashMessages renderMode="div" />
+</div>
+<div id="tx-datec-timeline-canvas"></div>
+<div id="tx-datec-timeline-form-canvas" style="display:none;"></div>
+<div id="tx-datec-timeline-show-canvas" style="display:none;"></div>
+
+</f:section>

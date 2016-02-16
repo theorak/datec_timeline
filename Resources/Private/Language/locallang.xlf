@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-01T17:17:17Z" product-name="datec_timeline">
+		<header/>
+		<body>
+			<trans-unit id="tx_datectimeline_domain_model_date">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date_plural">
+				<source>Dates</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.cruser">
+				<source>Cruser</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.start">
+				<source>Start</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.stop">
+				<source>Stop</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.reminderStart">
+				<source>Reminder Start</source>
+			</trans-unit>				
+			<trans-unit id="tx_datectimeline_domain_model_date.participants">
+				<source>Participants</source>
+			</trans-unit>			
+			
+			<trans-unit id="tx_datectimeline.errors.dbError">
+				<source>Error accessing the database!</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.errors.noDates">
+				<source>No dates found.</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.errors.noAccess">
+				<source>You don't have permission for this action.</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datectimeline.messages.dateCreated">
+				<source>Date created.</source>
+			</trans-unit>	
+			<trans-unit id="tx_datectimeline.messages.dateSaved">
+				<source>Date saved.</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.messages.dateDeleted">
+				<source>Date deleted.</source>
+			</trans-unit>		
+			
+			<trans-unit id="tx_datectimeline.tasks.reminderTask.name">
+				<source>Datec Timeline - Reminder Emails Task</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.reminderTask.description">
+				<source>Sends reminder emails for creators and participants of Datec Timeline planned dates.</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_datectimeline.mail.dearSirOrMadam">
+				<source>Dear Sir or Madam,</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.regards">
+				<source>Have a nice day!</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.reminderSubject">
+				<source>Datec Timeline - Date Reminder</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.reminderMsg">
+				<source>You have a upcoming date and are either creator or invited partipant.</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

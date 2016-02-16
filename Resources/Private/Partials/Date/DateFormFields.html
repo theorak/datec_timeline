@@ -1,0 +1,30 @@
+<input type="hidden" name="tx_datectimeline_timeline[dateId]" value="{date.uid}" />
+<f:form.hidden id="tx-date-timeline-date-start" property="start" value="" />
+<f:form.hidden id="tx-date-timeline-date-stop" property="stop" value="" />
+<f:form.hidden id="tx-date-timeline-date-reminderStart" property="reminderStart" value="" />
+<div class="form-group">
+	<label class="form-label"><f:translate key="tx_datectimeline_domain_model_date.title" /></label>
+	<f:form.textfield property="title" value="{date.title}" class="form-control" />
+</div>
+<div class="form-group">
+	<label class="form-label"><f:translate key="tx_datectimeline_domain_model_date.description" /></label>
+	<f:form.textarea property="description" rows="5" cols="30" value="{date.description}" class="form-control" />
+</div>
+<f:if condition="{participants}">
+	<div class="form-group">
+		<label class="form-label"><f:translate key="tx_datectimeline_domain_model_date.participants" /></label>
+		<f:form.select property="participants" multiple="true" options="{participants}" value="{date.participants}" class="form-control" />
+	</div>
+</f:if>
+<div class="form-group">
+	<label class="form-label"><f:translate key="tx_datectimeline_domain_model_date.start" /></label>
+	<input type="text" name="tx_datectimeline_timeline[datetime][start]" value="{f:format.date(date:date.start, format:settings.display.dateFormat)}" data-datetime="start" class="datetimepicker form-control" />
+</div>
+<div class="form-group">
+	<label class="form-label"><f:translate key="tx_datectimeline_domain_model_date.stop" /></label>
+	<input type="text" name="tx_datectimeline_timeline[datetime][stop]" value="{f:format.date(date:date.stop, format:settings.display.dateFormat)}" data-datetime="stop" class="datetimepicker form-control" />
+</div>
+<div class="form-group">
+	<label class="form-label"><f:translate key="tx_datectimeline_domain_model_date.reminderStart" /></label> 
+	<input type="text" name="tx_datectimeline_timeline[datetime][reminderStart]" value="{f:format.date(date:date.reminderStart, format:settings.display.dateFormat)}" data-datetime="reminderStart" class="datetimepicker form-control" />
+</div>

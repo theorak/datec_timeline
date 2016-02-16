@@ -1,0 +1,54 @@
+<div style='font-family: Arial;'>
+	
+	<f:translate key="tx_datectimeline.mail.dearSirOrMadam" />
+	<br /><br />
+	
+	<f:translate key="tx_datectimeline.mail.reminderMsg" />	
+	<br /><br />
+	
+	<f:if condition="{date}">
+		<table style="border: 1px solid gray;">
+			<thead>
+				<tr>
+					<th colspan="3" align="left" style="border-bottom:1px solid gray; padding:5px 3px;">{date.title}</th>
+				</tr>
+				<tr>
+					<td colspan="3" align="left" style="border-bottom:1px solid gray; padding:3px;">{date.description}</td>
+				</tr>
+				<tr>
+					<th align="left" style="padding:3px;"><f:translate key="tx_datectimeline_domain_model_date.start" /> / <f:translate key="tx_datectimeline_domain_model_date.stop" /></th>
+					<th align="left" style="padding:3px;"><f:translate key="tx_datectimeline_domain_model_date.cruser" /></th>
+					<th align="left" style="padding:3px;"><f:translate key="tx_datectimeline_domain_model_date.participants" /></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td align="left" valign="top" style="padding:3px;">
+						<f:format.date format="{settings.display.dateFormat}">{date.start}</f:format.date>
+						<f:if condition="{date.stop}">
+							<br /><f:format.date format="{settings.display.dateFormat}">{date.stop}</f:format.date>
+						</f:if>
+					</td>					
+					<td align="left" valign="top" style="padding:3px;">
+						<f:for each="{recipients}" as="name" key="email" iteration="iterator">
+							<f:if condition="{iterator.isFirst}">
+								{name}
+							</f:if>
+						</f:for>
+					</td>
+					<td align="left" valign="top" style="padding:3px;">
+						<f:for each="{recipients}" as="name" key="email" iteration="iterator">								
+							<f:if condition="{iterator.index} > 0">
+								{name}<br />							
+							</f:if>
+						</f:for>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br /><br />
+	</f:if>
+	
+	<f:translate key="tx_datectimeline.mail.regards" />
+	<br /><br />
+</div>

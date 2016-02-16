@@ -1,0 +1,32 @@
+/* styles from datec_timeline */
+.tx-datec-timeline > div {
+    margin-bottom: 10px;
+}
+.tx-datec-timeline .fc-title {
+	font-weight: bold;
+}
+.tx-datec-timeline-date > div {
+	margin-bottom: 5px;
+}
+.tx-datec-timeline .typo3-messages{font-weight:600}
+.tx-datec-timeline .typo3-message.message-ok{color:green}
+.tx-datec-timeline .typo3-message.message-warning{color:inherit}
+.tx-datec-timeline .typo3-message.message-error{color:red}
+/* for small screens: only day view */
+@media (max-width:991px) {
+	#tx-datec-timeline-canvas > .fc-toolbar > .fc-right {
+		display: none;
+	}
+	#tx-datec-timeline-canvas > .fc-toolbar > * > :first-child {
+	    font-size: 20px;
+	}
+}
+
+/* example for overwriting full calendar backround based on date creator */
+.fc-event.date-cruser {
+    border: 1px solid #green;
+    background-color: #green;
+}
+.fc-event .fc-bg {
+	/* opacity: 0; *//* note that all backrounds have a brightening overlay by default */
+}

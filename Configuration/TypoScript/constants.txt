@@ -1,0 +1,14 @@
+plugin.tx_datectimeline {
+	view {
+	    # cat=plugin.tx_datectimeline: advanced/140/layoutRootPath; type=string; label=Layout Root Path: Path to layouts
+	    layoutRootPath = EXT:datec_timeline/Resources/Private/Layouts/
+	    # cat=plugin.tx_datectimeline: advanced/140/partialRootPath; type=string; label=Partial Root Path: Path to partials
+	    partialRootPath = EXT:datec_timeline/Resources/Private/Partials/
+	    # cat=plugin.tx_datectimeline: advanced/140/templateRootPath; type=string; label=Template Root Path: Path to templates
+	    templateRootPath = EXT:datec_timeline/Resources/Private/Templates/
+	}
+	persistence {
+		# cat=plugin.tx_datectimeline//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

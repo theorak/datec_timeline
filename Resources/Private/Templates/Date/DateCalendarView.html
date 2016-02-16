@@ -1,0 +1,46 @@
+<div class="tx-datec-timeline-date" class="date-{creator.username}">
+	<f:comment>This is a render example, please change the template paths via TS and adjust this template to your liking.</f:comment>
+	<f:comment>
+	<div class="tx-datec-timeline-date-desciption">
+		{date.description}
+	</div>
+	</f:comment>
+	<div class="tx-datec-timeline-date-creator">
+		<f:if condition="{creator.lastName}">
+			<f:then>
+				{creator.lastName}
+				<f:if condition="{creator.firstName}">
+				, {creator.firstName}
+				</f:if>
+			</f:then>
+			<f:else>
+				{creator.username}
+			</f:else>
+		</f:if>
+	</div>
+	<f:comment>
+	<f:if condition="{date.participants}">
+		<div class="tx-datec-timeline-date-participants">
+			<f:for each="{date.participants}" as="participant">
+				<f:if condition="{participant.lastName}">
+					<f:then>
+						{participant.lastName}
+						<f:if condition="{participant.firstName}">
+						, {participant.firstName}
+						</f:if>
+					</f:then>
+					<f:else>
+						{participant.username}
+					</f:else>
+				</f:if>			
+			</f:for>
+		</div>
+	</f:if>
+	<div class="tx-datec-timeline-date-startStop">
+		<f:format.date format="{settings.display.dateFormat}">{date.start}</f:format.date>
+		<f:if condition="{date.stop}">
+		<br /><f:format.date format="{settings.display.dateFormat}">{date.stop}</f:format.date>
+		</f:if>
+	</div>
+	</f:comment>
+</div>
