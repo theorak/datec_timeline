@@ -10,10 +10,7 @@
 		<f:translate key="tx_datectimeline_domain_model_date.cruser" />:
 		<f:if condition="{creator.lastName}">
 			<f:then>
-				{creator.lastName}
-				<f:if condition="{creator.firstName}">
-				, {creator.firstName}
-				</f:if>
+				{creator.lastName}<f:if condition="{creator.firstName}">, {creator.firstName}</f:if>
 			</f:then>
 			<f:else>
 				{creator.username}
@@ -22,19 +19,17 @@
 	</div>
 	<f:if condition="{date.participants}">
 		<div class="tx-datec-timeline-date-participants">
-			<f:translate key="tx_datectimeline_domain_model_date.participants" />:
+			<f:translate key="tx_datectimeline_domain_model_date.participants" />:<br />
 			<f:for each="{date.participants}" as="participant" iteration="iterator">
 				<f:if condition="{participant.lastName}">
 					<f:then>
-						{participant.lastName}
-						<f:if condition="{participant.firstName}">
-						, {participant.firstName}
-						</f:if>
+						{participant.lastName}<f:if condition="{participant.firstName}">, {participant.firstName}</f:if>
 					</f:then>
 					<f:else>
 						{participant.username}
 					</f:else>
-				</f:if><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
+				</f:if>
+				<br />
 			</f:for>
 		</div>
 	</f:if>

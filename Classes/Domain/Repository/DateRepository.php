@@ -70,7 +70,7 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$constraints[] = $query->greaterThanOrEqual('stop', $now);
 		
 		if ($filterRemindable) {
-			$constraints[] = $query->logicalOr($query->lessThanOrEqual('reminder_start', $now), $query->equals('reminder_start', 0));
+			$constraints[] = $query->logicalAnd($query->lessThanOrEqual('reminder_start', $now), $query->equalsNot('reminder_start', 0));
 		}
 		
 		return $query->matching($query->logicalAnd($query->logicalAnd($constraints)))->execute();

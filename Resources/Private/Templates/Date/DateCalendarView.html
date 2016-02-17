@@ -4,30 +4,23 @@
 	<div class="tx-datec-timeline-date-desciption">
 		{date.description}
 	</div>
-	</f:comment>
 	<div class="tx-datec-timeline-date-creator">
 		<f:if condition="{creator.lastName}">
 			<f:then>
 				{creator.lastName}
-				<f:if condition="{creator.firstName}">
-				, {creator.firstName}
-				</f:if>
+				<f:if condition="{creator.firstName}">, {creator.firstName}</f:if>
 			</f:then>
 			<f:else>
 				{creator.username}
 			</f:else>
 		</f:if>
 	</div>
-	<f:comment>
 	<f:if condition="{date.participants}">
 		<div class="tx-datec-timeline-date-participants">
 			<f:for each="{date.participants}" as="participant">
 				<f:if condition="{participant.lastName}">
 					<f:then>
-						{participant.lastName}
-						<f:if condition="{participant.firstName}">
-						, {participant.firstName}
-						</f:if>
+						{participant.lastName}<f:if condition="{participant.firstName}">, {participant.firstName}</f:if>
 					</f:then>
 					<f:else>
 						{participant.username}
