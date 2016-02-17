@@ -3,31 +3,32 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
-Target group: **Administrators**
+Zielgruppe: **Administratoren**
 
 
 .. only:: html
 
-	.. contents:: Within this page
+	.. contents:: Auf dieser Seite
 		:local:
 		:depth: 3
 
 .. _configuration:
 
-Configuration Reference
-=======================
+Konfigurationshandbuch
+======================
 
-This section describes all options aviable for Datec Timeline via TypoScript setup. To change these options please add a new extension template to your ROOT template.
+Dieses Kapitel beschreibt alle Einstellungen von Datec Timeline die über TypoScript konfigurierbar sind.
+Zum Ändern der Einstellungen fügen Sie bitte eines Erweiterungstemplate dem ROOT Template hinzu.
 
 .. _configuration-typoscript:
 
-Minimal configuration
----------------------
+Minimale Einstellungen
+-----------------------
 
-Upon installation, please add the static extension template 'Datec Timeline' to your ROOT template (Web > Template > edit root page template > Includes > select static template from extensions) and set at least the following options:
+Fügen Sie für die minimalen Einstellung ein statisch Template zu Ihrem Root Template (Web > Template > ROOT-Template bearbeiten> enthält > statisches Template der Erweiterung Auswählen) hinzu und fügen folgende Sie dort folgende Einstellungen hinzu:
 
 .. code-block:: ts
 
@@ -39,24 +40,24 @@ Upon installation, please add the static extension template 'Datec Timeline' to 
 	plugin.tx_datectimeline.settings.mail.internMailFrom = timeline@no-reply.com
 
 
-General configuration
----------------------
+Generelle Einstellungen
+-----------------------
 
-plugin.tx_datectimeline.
+**plugin.tx_datectimeline**.
 
 .. container:: ts-properties
 
-	================================================    =============   ==============================================================================  ===========
-	Property                                            Data type       Description                                                                     Default
-	================================================    =============   ==============================================================================  ===========
-	view.templateRootPaths                              array           Constant, path to template files if you wish to use your own.                   EXT:datec_timeline/Resources/Private/Templates/
-	view.partialRootPaths                               array           Constant, path to partial template files if you wish to use your own.           EXT:datec_timeline/Resources/Private/Partials/
-	view.layoutRootPaths                                array           Constant, path to layout files if you wish to use your own.                     EXT:datec_timeline/Resources/Private/Layouts/
-	persistence.storagePid                              int             System folder for appointments.
-	settings.storagePid                                 int             System folder for appointments.
-	settings.mail.internMailFrom                        string          E-mail address for automatic notification Mails [FROM].                         timeline@no-reply.com
-	settings.mail.internMailFromName                    string          Name to display for automatic notification Mails [FROM-NAME].                   Datec Timeline
-	settings.display.comments.dateFormat                string          Like 'settings.display.dateFormat' for comments only.                           d.m.Y - H:
-	settings.reminderMailAfterCreation                  string          Send out first reminder E-Mail after creation of appointment.                   true
-	settings.langOptions                                string          Hides/shows language options.                                                   true
-	================================================    =============   ==============================================================================  ===========
+	================================================   =============   ==============================================================================  ============
+	Einstellungen                                      Datentyp        Beschreibung                                                                    Standardwert
+	================================================   =============   ==============================================================================  ============
+	view.templateRootPaths                             array           Konstante, Pfad zu den Template Dateien                                         EXT:datec_timeline/Resources/Private/Templates/
+	view.partialRootPaths                              array           Konstante, Pfad zu den Partial Template Dateien                                 EXT:datec_timeline/Resources/Private/Partials/
+	view.layoutRootPaths                               array           Konstante, Pfad zu den Layout Dateien                                           EXT:datec_timeline/Resources/Private/Layouts/
+	persistence.storagePid                             int             Systemordner für die Termine
+	settings.storagePid                                int             Systemordner für die Termine
+	settings.mail.internMailFrom                       string          E-mail Adresse für die automatische Email Benachrichtigung [FROM]               timeline@no-reply.com
+	settings.mail.internMailFromName                   string          Anzeigename für die automatische Email Benachrichtigung [FROM-NAME].            Datec Timeline
+	settings.display.comments.dateFormat               string          Datums Format nur für die Bemerkungen                                           d.m.Y - H:
+	settings.reminderMailAfterCreation                 string          Die erste Email nach der Erstellung des Termins                                 true
+	settings.langOptions                               string          Sprachen ausblenden / anzeigen                                                  true
+	================================================   =============   ==============================================================================  ============

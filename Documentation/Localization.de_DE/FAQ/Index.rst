@@ -3,23 +3,20 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
 .. _faq:
 
 FAQ
-====================
+===
 
 .. only:: html
 
-	.. contents:: Within this page
+	.. contents:: Auf dieser Seite
 		:local:
 		:depth: 3
 
-
-How to change the layout/design?
---------------------------------
-
-Copy the template files (:code:`datec_timeline\Resources\Private\Layouts` \\Partials, \\Templates)
-into the fileadmin folder and change the paths via TS or constant editor (see the configuration section of this document).
+Wie wechsel ich das Layout/Design?
+----------------------------------
+Kopieren Sie die Dateien (:code:`datec_timeline\Resources\Private\Layout`,\\Partials,\\Template) nach Fileadmin und ändern den Pfad per TypoScript.

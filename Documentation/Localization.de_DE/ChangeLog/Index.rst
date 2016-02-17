@@ -3,12 +3,11 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
 .. _change-log:
 
 Change Log
 ==========
-
-Changes will be tracked `here <https://github.com/theorak/datec_timeline>`_.
+Alle Änderungen und Probleme finden Sie  `hier <https://github.com/theorak/datec_timeline>`_.

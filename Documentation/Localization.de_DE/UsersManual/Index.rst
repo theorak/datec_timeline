@@ -3,51 +3,51 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
 .. _users-manual:
 
-Users manual
-============
+Benutzerhandbuch
+================
 
-Target group: **Users**
+Zielgruppe: **Benutzer**
 
 .. only:: html
 
-	.. contents:: Within this page
+	.. contents:: Auf dieser Seite
 		:local:
 		:depth: 3
 
-		
-Users - Views 
--------------
+Benutzer - Ansicht
+------------------
 
-The default view is fullcalendar's "Agenda Week" view. This view is optimal for appointments with time information. 
-The controls on the right also let the user switch between monthly and per day view, the latter is forced as default for mobilde devices or small screens.
+Die Standard Ansicht des fullcalendars ist die "Agenda Woche" Ansicht. Diese Ansicht ist optimal für das planen von Terminen mit zeitlichen Informationen.
+Über die Schaltflächen auf der rechten Seite kann der Benutzer zwischen der Monats, Wochen und Tag Ansicht wechseln. Die Tag Ansicht ist die Standard Ansicht für Mobile geäte oder kleinere Bildschirme.
 
-.. figure:: ../Images/datec_timeline_02_views.jpg
+.. figure:: ../../Images/datec_timeline_02_views.png
 	:width: 900px
 	:alt: Backend view
 
-	Viewing of appointmets
-	
+	Anzeige von Terminen
 
-Users - Creating and Editing
+
+Benutzer - erstellen und bearbeiten
 ----------------------------
 
-Users can create and edit appointments right in the frontend. Just click on any spot in the timeline and a popup window for all necessary properties appears:
-- Title: the title of the appointment.
-- Description: A short description of the appointment.
-- Participants: A list of other frontend-users to invite to this appointment.
-- From/To: The date-time range of the appointment, prefilled with the selected date.
-- Reminder From: Automatic reminder e-mails will be send after this date, prefilled with the current date.
-Note: The currently logged in frontend user is saved as the creator of the appointment.
+Der Benutzer kann einen Termin im Frontend erstellen oder bearbeiten. Mit einem klick auf den gewünschten Tag in der Timeline öffnet sich ein Popup Fenster mit folgenden Eigenschaften:
 
-The appointment can then be edited again, by simply clicking on it, or moving it to a desired date.
+- Titel: der Titel des Termins.
+- Beschreibung: Eine kurze Beschreibung des Termins.
+- Teilnehmer: Eine Liste von anderen Frontend Benutzern die zu dem Termin eingeladen werden können.
+- Von/Bis: Datum und Zeitraum des Termin mit dem Datum ausgefüllt das ausgewählt wurde.
+- Errinnerung am: Es wird eine automatische Errinnerungsemail zu der gewünschten zeit versendet, vorausgefüllt it dem aktuellem Datum.
+Hinweis: Der Aktuell eingeloggte Frontend Benutzer wird als Terminersteller gespeichert.
 
-.. figure:: ../Images/datec_timeline_03_createdate.jpg
+Der Termin kann wieder bearbeitet werden, indem man einfach auf den Termin klickt oder ihn per Drag&Drop zum gewünschten Datum bewegt.
+
+.. figure:: ../../Images/datec_timeline_03_createdate.png
 	:width: 900px
 	:alt: Backend view
 
-	Viewing of appointmets
+	Ansicht von Terminen

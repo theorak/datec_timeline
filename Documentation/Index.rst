@@ -9,13 +9,13 @@
 .. _start:
 
 =============================================================
-Datec TImeline
+Datec Timeline
 =============================================================
 
 .. only:: html
 
 	:Classification:
-		extension_key
+		datec_timeline
 
 	:Version:
 		|release|

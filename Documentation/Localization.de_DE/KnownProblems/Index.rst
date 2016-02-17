@@ -3,14 +3,14 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
 .. _known-problems:
 
-Known Problems
-==============
+Bekannte Probleme
+==================
 
-No problems reported yet.
+Es wurden noch keine Probleme berichtet
 
-Issues will be tracked `here <https://github.com/theorak/datec_timeline>`_
+Verfolgen können Sie es `hier <https://github.com/theorak/datec_timeline>`_

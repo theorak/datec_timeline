@@ -3,32 +3,33 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 .. _introduction:
 
-What does it do?
+Was macht es?
 ================
 
-This extension gives a basic appointment model to organize appointments. The frontend solution is jQuery FullCalendar, which requires jQuery and jQury-ui to be installed.
-The extension frontend is based on fullcalendar functionality, combined with the appointment object, perfect to handle appointmens with multiple participants:
+Diese Erweiterung enthält ein Model für das einfache Planen von Terminen. Die Frontend Lösung ist JQuery fullcalendar, es muss JQuery und JQuery-UI installiert sein.
+Diese Frontend Erweiterung basiert auf der FullCalendar funktionalität, in Kombination mit dem Terminplan Objekt, es ist perfekt für das Planen von Terminen mit mehreren Teilnehmern.
 
-* Calendar and agenda views per month, week or day
-* Appointments can be edited in frontend view, dragging and moving events is supported
-* Appointments have title, description, creator or participants assigned from frontent users and a reminder date 
-* Access to the plugins features can be controlled with access rights to the plugin content element
-* Frontend view is optimized for responsive design and testet with Bootstrap 3
+* Kalender und Agenda Ansicht pro Monat, Woche oder Tag
+* Termine können in der Frontend Ansicht bearbeitet werden
+* einfaches verschieben der Termine durch Drag&Drop
+* Termine haben einen Titel, eine Beschreibung, Ersteller oder Teilnehmer aus den Frontend Benutzern und ein Erinnerungsdatum
+* Zugriff auf die Plugin Feature können über die Zugriffsrechte des Plugin Content Elements gesteuert werden
+* die Frontend Ansicht ist für das Responsiv Design optimiert und mit Bootstrap 3 getestet
 
 .. tip::
 
-	Visit & contribute: `https://github.com/theorak/datec_timeline`_
-	
+	Besuchen & unterstützen Sie uns: `<https://github.com/theorak/datec_timeline>`_
+
 .. tip::
 
-	More information about fullcalendar: `http://fullcalendar.io/`_
+	Mehr Informationen zu fullcalendar: `<http://fullcalendar.io/>`_
 
-.. figure:: ../Images/datec_timeline_01_overview.jpg
+.. figure:: ../../Images/datec_timeline_01_overview.PNG
 	:width: 900px
 	:alt: Datec Timeline Overview
 
-	Datec Timeline just after installation
+	Datec Timeline kurz nach der Installation

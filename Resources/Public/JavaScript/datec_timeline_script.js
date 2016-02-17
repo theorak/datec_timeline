@@ -73,6 +73,7 @@ var DatecTimeline = {
     		success: function(data, state, jqXHR) {
         		// open form in jQuery-ui modal dialog
     			$("#tx-datec-timeline-form-canvas").html(data).dialog({
+    				resizable: false,
     				modal:true,
     				buttons: {
     			        OK: function() {
@@ -132,10 +133,11 @@ var DatecTimeline = {
     		success: function(data, state, jqXHR) {
         		// open form in jQuery-ui modal dialog
     			if (data.search("form") === -1) { // is not the form
-    				$("#tx-datec-timeline-show-canvas").html(data).dialog({modal:true});
+    				$("#tx-datec-timeline-show-canvas").html(data).dialog({ resizable: false,modal:true});
     			} else {
     				$("#tx-datec-timeline-form-canvas").html(data).dialog({
-        				modal:true,
+    					 resizable: false,
+    					modal:true,
         				buttons: {
         			        OK: function() {
         			        	DatecTimeline.updateDate();

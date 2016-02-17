@@ -15,7 +15,7 @@ Datec Timeline (Deutsch)
 .. only:: html
 
 	:Klassifikation:
-		extension_key
+		datec_timeline
 
 	:Version:
 		|release|
@@ -26,7 +26,7 @@ Datec Timeline (Deutsch)
 	:Beschreibung:
 		Diese Erweiterung enthält ein Model für Termine zur einfachen Verwaltung von Terminen mit mehreren Teilnehmern. Oberfläche mit jQuery fullcalendar.
 
-	:Schlüsselwörter:
+	:Tags:
 		datec, timline, date, appointment, event, calendar, fullcalendar
 
 	:Copyright:
