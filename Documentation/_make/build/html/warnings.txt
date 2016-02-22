@@ -1,0 +1,10 @@
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\AdministratorManual\Index.rst:None: WARNING: image file not readable: AdministratorManual\../Images/plugin_01.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\AdministratorManual\Index.rst:None: WARNING: image file not readable: AdministratorManual\../Images/plugin_02.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\Introduction\Index.rst:None: WARNING: image file not readable: Introduction\../Images/datec_timeline_01_overview.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\Localization.de_DE\UsersManual\Index.rst:59: WARNING: Bullet list ends without a blank line; unexpected unindent.
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\Localization.de_DE\UsersManual\Index.rst:None: WARNING: image file not readable: Localization.de_DE\UsersManual\../../Images/datec_timeline_04_creator.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\UsersManual\Index.rst:None: WARNING: image file not readable: UsersManual\../Images/datec_timeline_04_creator.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\UsersManual\Index.rst:None: WARNING: image file not readable: UsersManual\../Images/datec_timeline_02_views.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\UsersManual\Index.rst:None: WARNING: image file not readable: UsersManual\../Images/datec_timeline_03_createdate.jpg
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\Localization.de_DE\Index.rst:: WARNING: document isn't included in any toctree
+WARNING: html_static_path entry 'C:\\dev\\xampp\\htdocs\\blank\\typo3conf\\ext\\datec_timeline\\Documentation\\_make\\../_static' does not exist

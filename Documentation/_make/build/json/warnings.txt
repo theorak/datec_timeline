@@ -1,0 +1,2 @@
+C:\dev\xampp\htdocs\blank\typo3conf\ext\datec_timeline\Documentation\Localization.de_DE\Index.rst:: WARNING: document isn't included in any toctree
+WARNING: html_static_path entry 'C:\\dev\\xampp\\htdocs\\blank\\typo3conf\\ext\\datec_timeline\\Documentation\\_make\\../_static' does not exist

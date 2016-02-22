@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Administrator Manual &mdash; Datec Timeline 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Datec Timeline 1.1.0 documentation" href="../Index.html" />
+    <link rel="next" title="Configuration Reference" href="../Configuration/Index.html" />
+    <link rel="prev" title="Users manual" href="../UsersManual/Index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Configuration/Index.html" title="Configuration Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../UsersManual/Index.html" title="Users manual"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="administrator-manual">
+<span id="admin-manual"></span><h1>Administrator Manual<a class="headerlink" href="#administrator-manual" title="Permalink to this headline">¶</a></h1>
+<p>Target group: <strong>Administrators</strong></p>
+<div class="contents local topic" id="within-this-page">
+<p class="topic-title first">Within this page</p>
+<ul class="simple">
+<li><a class="reference internal" href="#requirements" id="id3">Requirements</a></li>
+<li><a class="reference internal" href="#installation" id="id4">Installation</a></li>
+<li><a class="reference internal" href="#insert-plugin" id="id5">Insert Plugin</a></li>
+<li><a class="reference internal" href="#add-reminder-e-mail-task" id="id6">Add Reminder E-mail Task</a></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2><a class="toc-backref" href="#id3">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">You must load the jQuery JavaScript framework ans jQuery-uid plugin yourself as the frontend plugin utilizes functions that depend on these libraries.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id4">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Download and install the extension via the extension manager (extKey: datec_timeline).</li>
+<li>Add one storage folder for appointments, note down the page id (PID) of this folder.</li>
+<li>Check the Configuration section of this manual for the required configuration and follow the steps there.</li>
+<li>Insert the main plugin as described below.</li>
+<li>(optional) Add the scheduler task for appointment reminder e-mails.</li>
+</ol>
+</div>
+<div class="section" id="insert-plugin">
+<h2><a class="toc-backref" href="#id5">Insert Plugin</a><a class="headerlink" href="#insert-plugin" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Insert a content element, choose &#8220;Plugins&#8221; -&gt; &#8220;General Plugin&#8221;</li>
+</ol>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="AdministratorManual\../Images/plugin_01.jpg"><img alt="insert plugin" src="AdministratorManual\../Images/plugin_01.jpg" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text">Inserting content element of type &#8220;Plugin&#8221;</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Choose the plugin &#8220;Datec Timeline&#8221;.</li>
+</ol>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="AdministratorManual\../Images/plugin_02.jpg"><img alt="modules" src="AdministratorManual\../Images/plugin_02.jpg" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text">Choosing a display form</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple" start="3">
+<li>(optional) Set access rights as required, appointments should have a closed group of users.</li>
+</ol>
+</div>
+<div class="section" id="add-reminder-e-mail-task">
+<h2><a class="toc-backref" href="#id6">Add Reminder E-mail Task</a><a class="headerlink" href="#add-reminder-e-mail-task" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Goto the BE-Mudole scheduler (scheduler extension must be installed and configured).</li>
+<li>Add a new scheduler task &#8220;Datec Timeline - Reminder e-mails task&#8221;</li>
+<li>It is recommended to set a recurring, daily task (86400 seconds) and set the time of execution time to 0:00 am.</li>
+<li>Note that the e-mail language depends on the langue setting of the _cli_scheduler backend user.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../Index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Administrator Manual</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#insert-plugin">Insert Plugin</a></li>
+<li><a class="reference internal" href="#add-reminder-e-mail-task">Add Reminder E-mail Task</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../UsersManual/Index.html"
+                        title="previous chapter">Users manual</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Configuration/Index.html"
+                        title="next chapter">Configuration Reference</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/AdministratorManual/Index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Configuration/Index.html" title="Configuration Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../UsersManual/Index.html" title="Users manual"
+             >previous</a> |</li>
+        <li><a href="../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Philipp Roensch.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

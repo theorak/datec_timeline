@@ -1,0 +1,19 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}What does it do?}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Users manual}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Editors - Creator of Appointments}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Users - Views}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}Users - Creating and Editing}{4}{section.2.3}
+\contentsline {chapter}{\numberline {3}Administrator Manual}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Requirements}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}Installation}{5}{section.3.2}
+\contentsline {section}{\numberline {3.3}Insert Plugin}{5}{section.3.3}
+\contentsline {section}{\numberline {3.4}Add Reminder E-mail Task}{6}{section.3.4}
+\contentsline {chapter}{\numberline {4}Configuration Reference}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Minimal configuration}{7}{section.4.1}
+\contentsline {section}{\numberline {4.2}General configuration}{7}{section.4.2}
+\contentsline {chapter}{\numberline {5}Known Problems}{9}{chapter.5}
+\contentsline {chapter}{\numberline {6}To-Do List}{11}{chapter.6}
+\contentsline {chapter}{\numberline {7}Change Log}{13}{chapter.7}
+\contentsline {chapter}{\numberline {8}FAQ}{15}{chapter.8}
+\contentsline {section}{\numberline {8.1}How to change the layout/design?}{15}{section.8.1}

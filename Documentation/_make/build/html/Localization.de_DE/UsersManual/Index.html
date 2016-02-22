@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Benutzerhandbuch &mdash; Datec Timeline 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Datec Timeline 1.1.0 documentation" href="../../Index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="benutzerhandbuch">
+<span id="users-manualde"></span><h1>Benutzerhandbuch<a class="headerlink" href="#benutzerhandbuch" title="Permalink to this headline">¶</a></h1>
+<p>Zielgruppe: <strong>Benutzer und Redakteure</strong></p>
+<div class="contents local topic" id="auf-dieser-seite">
+<p class="topic-title first">Auf dieser Seite</p>
+<ul class="simple">
+<li><a class="reference internal" href="#editors-creator-of-appointments" id="id4">Editors - Creator of Appointments</a></li>
+<li><a class="reference internal" href="#benutzer-ansicht" id="id5">Benutzer - Ansicht</a></li>
+<li><a class="reference internal" href="#benutzer-erstellen-und-bearbeiten" id="id6">Benutzer - Erstellen und Bearbeiten</a></li>
+</ul>
+</div>
+<div class="section" id="editors-creator-of-appointments">
+<h2><a class="toc-backref" href="#id4">Editors - Creator of Appointments</a><a class="headerlink" href="#editors-creator-of-appointments" title="Permalink to this headline">¶</a></h2>
+<p>Die Farbe der Termine basiert auf dem Ersteller des Termins. Alle Ersteller sind Frontend-Benutzer, daher kann die Farbe über die Option &#8220;Terminfarbe&#8221; in den Benutzerdaten angepasst werden.</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="Localization.de_DE\UsersManual\../../Images/datec_timeline_04_creator.jpg"><img alt="Backend view" src="Localization.de_DE\UsersManual\../../Images/datec_timeline_04_creator.jpg" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-text">Frontend Benutzer editieren als Ersteller</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="benutzer-ansicht">
+<h2><a class="toc-backref" href="#id5">Benutzer - Ansicht</a><a class="headerlink" href="#benutzer-ansicht" title="Permalink to this headline">¶</a></h2>
+<p>Es wird standardmäßig die fullcalendar &#8220;Wochenangenda&#8221;-Ansicht angezeigt. Diese Ansicht ist optimal für das planen von Terminen mit zeitlichen Informationen.
+Über die Schaltflächen auf der rechten Seite kann der Benutzer zwischen der Monats, Wochen und Tag Ansicht wechseln. Die Tag Ansicht ist die Standard Ansicht für Mobile geäte oder kleinere Bildschirme.
+Ebenfalls oberhalb der Timeline finden Sie die Ersteller von Terminen, klicken Sie diese an um Termine dieser Ersteller auszuschließen.
+Diese Anzeige wird alle 30 Sekunden aktualisiert.</p>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../_images/datec_timeline_02_views.png"><img alt="Backend view" src="../../_images/datec_timeline_02_views.png" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-text">Anzeige von Terminen</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="benutzer-erstellen-und-bearbeiten">
+<h2><a class="toc-backref" href="#id6">Benutzer - Erstellen und Bearbeiten</a><a class="headerlink" href="#benutzer-erstellen-und-bearbeiten" title="Permalink to this headline">¶</a></h2>
+<p>Der Benutzer kann einen Termin im Frontend erstellen oder bearbeiten. Mit einem klick auf den gewünschten Tag in der Timeline öffnet sich ein Popup Fenster mit folgenden Eigenschaften:</p>
+<ul class="simple">
+<li>Titel: der Titel des Termins.</li>
+<li>Beschreibung: Eine kurze Beschreibung des Termins.</li>
+<li>Teilnehmer: Eine Liste von anderen Frontend Benutzern die zu dem Termin eingeladen werden können.</li>
+<li>Von/Bis: Datum und Zeitraum des Termin mit dem Datum ausgefüllt das ausgewählt wurde.</li>
+<li>Errinnerung am: Es wird eine automatische Erinnerungsmail zu dem gewünschten Datum versendet, vorausgefüllt mit dem Start des Termins.</li>
+</ul>
+<p>Hinweis: Der Aktuell eingeloggte Frontend Benutzer wird als Terminersteller gespeichert.</p>
+<p>Der Termin kann wieder bearbeitet werden, indem man einfach auf den Termin klickt oder ihn per Drag&amp;Drop zum gewünschten Datum bewegt.</p>
+<div class="figure" id="id3">
+<a class="reference internal image-reference" href="../../_images/datec_timeline_03_createdate.png"><img alt="Backend view" src="../../_images/datec_timeline_03_createdate.png" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-text">Ansicht von Terminen</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../Index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Benutzerhandbuch</a><ul>
+<li><a class="reference internal" href="#editors-creator-of-appointments">Editors - Creator of Appointments</a></li>
+<li><a class="reference internal" href="#benutzer-ansicht">Benutzer - Ansicht</a></li>
+<li><a class="reference internal" href="#benutzer-erstellen-und-bearbeiten">Benutzer - Erstellen und Bearbeiten</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Localization.de_DE/UsersManual/Index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Philipp Roensch.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

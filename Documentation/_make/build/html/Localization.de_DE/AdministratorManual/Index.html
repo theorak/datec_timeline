@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Administrator Handbuch &mdash; Datec Timeline 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Datec Timeline 1.1.0 documentation" href="../../Index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="administrator-handbuch">
+<span id="admin-manualde"></span><h1>Administrator Handbuch<a class="headerlink" href="#administrator-handbuch" title="Permalink to this headline">¶</a></h1>
+<p>Zielgruppe: <strong>Administratoren</strong></p>
+<div class="contents local topic" id="auf-dieser-seite">
+<p class="topic-title first">Auf dieser Seite</p>
+<ul class="simple">
+<li><a class="reference internal" href="#anforderungen" id="id3">Anforderungen</a></li>
+<li><a class="reference internal" href="#installation" id="id4">Installation</a></li>
+<li><a class="reference internal" href="#plugin-hinzufugeninsert-plugin" id="id5">Plugin hinzufügenInsert Plugin</a></li>
+<li><a class="reference internal" href="#hinzufugen-von-eines-errinerungsemail-task" id="id6">Hinzufügen von eines Errinerungsemail Task</a></li>
+</ul>
+</div>
+<div class="section" id="anforderungen">
+<h2><a class="toc-backref" href="#id3">Anforderungen</a><a class="headerlink" href="#anforderungen" title="Permalink to this headline">¶</a></h2>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Es muss das JQuery Javascript Framework und JQuery-UI Plugin selbst installiert werden.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id4">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Erweiterung über den Erweiterungsmanager runterladen und installieren (extKey: datec_timeline)</li>
+<li>Fügen Sie einen Speicherordner für die Termine hinzu, notieren Sie sich die Seiten ID (PID) des Ordners</li>
+<li>Gehen sie in das Konfiguration Kapitel dieses Handbuches und übernehmen die erforderlichen Einstellungen</li>
+<li>Fügen sie das Plugin wie beschrieben hinzu</li>
+<li>(optional) Fügen Sie für die Erinnerungsmail einen neuen Task zu ihrem Planer hinzu</li>
+</ol>
+</div>
+<div class="section" id="plugin-hinzufugeninsert-plugin">
+<h2><a class="toc-backref" href="#id5">Plugin hinzufügenInsert Plugin</a><a class="headerlink" href="#plugin-hinzufugeninsert-plugin" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Fügen Sie ein neues Inhalts Element hinzu, wechseln dort auf den Reiter Plugins und wählen dort Generelles Plugin hinzu</li>
+</ol>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../../_images/plugin_01.png"><img alt="insert plugin" src="../../_images/plugin_01.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text">Hinzufügen eines Inhalt Elements vom Typ &#8220;Plugin&#8221;</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Wählen Sie das Plugin &#8220;Datec Timeline&#8221; aus.</li>
+</ol>
+<div class="figure" id="id2">
+<a class="reference internal image-reference" href="../../_images/plugin_02.png"><img alt="modules" src="../../_images/plugin_02.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text">Wählen der Ansichts Form</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple" start="3">
+<li>(Optional) Setzen der benötigten Zugriffsrechte die Termine sollten nur für bestimmte Benutzergruppen verfügbar sein.</li>
+</ol>
+</div>
+<div class="section" id="hinzufugen-von-eines-errinerungsemail-task">
+<h2><a class="toc-backref" href="#id6">Hinzufügen von eines Errinerungsemail Task</a><a class="headerlink" href="#hinzufugen-von-eines-errinerungsemail-task" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Gehen Sie in das BE-Modul Planer (die Planer Erweiterung muss installiert und konfiguriert sein)</li>
+<li>Fügen Sie einen neuen Aufgaben Task mit dem Namen &#8220;Datec Timeline - Reminder e-mails task&#8221; hinzu</li>
+<li>Es ist empfohlen als auf täglich wiederholend (86400 seconds) und die Ausführungszeit auf 0:00 zu stellen</li>
+<li>Hinweis die Sprache der Email hängt von der Sprache es _cli_scheduler backend Benutzers ab</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../Index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Administrator Handbuch</a><ul>
+<li><a class="reference internal" href="#anforderungen">Anforderungen</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#plugin-hinzufugeninsert-plugin">Plugin hinzufügenInsert Plugin</a></li>
+<li><a class="reference internal" href="#hinzufugen-von-eines-errinerungsemail-task">Hinzufügen von eines Errinerungsemail Task</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Localization.de_DE/AdministratorManual/Index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Philipp Roensch.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

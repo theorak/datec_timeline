@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuration Reference &mdash; Datec Timeline 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Datec Timeline 1.1.0 documentation" href="../Index.html" />
+    <link rel="next" title="Known Problems" href="../KnownProblems/Index.html" />
+    <link rel="prev" title="Administrator Manual" href="../AdministratorManual/Index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../KnownProblems/Index.html" title="Known Problems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../AdministratorManual/Index.html" title="Administrator Manual"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Target group: <strong>Administrators</strong></p>
+<div class="contents local topic" id="within-this-page">
+<p class="topic-title first">Within this page</p>
+<ul class="simple">
+<li><a class="reference internal" href="#configuration-reference" id="id1">Configuration Reference</a><ul>
+<li><a class="reference internal" href="#minimal-configuration" id="id2">Minimal configuration</a></li>
+<li><a class="reference internal" href="#general-configuration" id="id3">General configuration</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration-reference">
+<span id="configuration"></span><h1><a class="toc-backref" href="#id1">Configuration Reference</a><a class="headerlink" href="#configuration-reference" title="Permalink to this headline">¶</a></h1>
+<p>This section describes all options aviable for Datec Timeline via TypoScript setup. To change these options please add a new extension template to your ROOT template.</p>
+<div class="section" id="minimal-configuration">
+<span id="configuration-typoscript"></span><h2><a class="toc-backref" href="#id2">Minimal configuration</a><a class="headerlink" href="#minimal-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Upon installation, please add the static extension template &#8216;Datec Timeline&#8217; to your ROOT template (Web &gt; Template &gt; edit root page template &gt; Includes &gt; select static template from extensions) and set at least the following options:</p>
+<div class="highlight-ts"><div class="highlight"><pre># PID of your storage folder for appointments
+plugin.tx_datectimeline.persistence.storagePid = 123
+plugin.tx_datectimeline.settings.storagePid = 123
+
+# Valid e-mail address to dispatch automatic mails from
+plugin.tx_datectimeline.settings.mail.internMailFrom = timeline@no-reply.com
+</pre></div>
+</div>
+</div>
+<div class="section" id="general-configuration">
+<h2><a class="toc-backref" href="#id3">General configuration</a><a class="headerlink" href="#general-configuration" title="Permalink to this headline">¶</a></h2>
+<p>plugin.tx_datectimeline.</p>
+<div class="ts-properties container">
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="7%" />
+<col width="42%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Data type</th>
+<th class="head">Description</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>view.templateRootPaths</td>
+<td>array</td>
+<td>Constant, path to template files if you wish to use your own.</td>
+<td>EXT:datec_timeline/Resources/Private/Templates/</td>
+</tr>
+<tr class="row-odd"><td>view.partialRootPaths</td>
+<td>array</td>
+<td>Constant, path to partial template files if you wish to use your own.</td>
+<td>EXT:datec_timeline/Resources/Private/Partials/</td>
+</tr>
+<tr class="row-even"><td>view.layoutRootPaths</td>
+<td>array</td>
+<td>Constant, path to layout files if you wish to use your own.</td>
+<td>EXT:datec_timeline/Resources/Private/Layouts/</td>
+</tr>
+<tr class="row-odd"><td>persistence.storagePid</td>
+<td>int</td>
+<td>System folder for appointments.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>settings.storagePid</td>
+<td>int</td>
+<td>System folder for appointments.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>settings.mail.internMailFrom</td>
+<td>string</td>
+<td>E-mail address for automatic notification Mails [FROM].</td>
+<td><a class="reference external" href="mailto:timeline&#37;&#52;&#48;no-reply&#46;com">timeline<span>&#64;</span>no-reply<span>&#46;</span>com</a></td>
+</tr>
+<tr class="row-even"><td>settings.mail.internMailFromName</td>
+<td>string</td>
+<td>Name to display for automatic notification Mails [FROM-NAME].</td>
+<td>Datec Timeline</td>
+</tr>
+<tr class="row-odd"><td>settings.display.comments.dateFormat</td>
+<td>string</td>
+<td>Like &#8216;settings.display.dateFormat&#8217; for comments only.</td>
+<td>d.m.Y - H:</td>
+</tr>
+<tr class="row-even"><td>settings.reminderMailAfterCreation</td>
+<td>string</td>
+<td>Send out first reminder E-Mail after creation of appointment.</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>settings.reminderMailAfterEdit</td>
+<td>string</td>
+<td>Send out a reminder E-Mail after each edit of appointment.</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>settings.langOptions</td>
+<td>string</td>
+<td>Hides/shows language options.</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../Index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuration Reference</a><ul>
+<li><a class="reference internal" href="#minimal-configuration">Minimal configuration</a></li>
+<li><a class="reference internal" href="#general-configuration">General configuration</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../AdministratorManual/Index.html"
+                        title="previous chapter">Administrator Manual</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../KnownProblems/Index.html"
+                        title="next chapter">Known Problems</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Configuration/Index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../KnownProblems/Index.html" title="Known Problems"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../AdministratorManual/Index.html" title="Administrator Manual"
+             >previous</a> |</li>
+        <li><a href="../Index.html">Datec Timeline 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Philipp Roensch.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>
