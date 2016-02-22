@@ -38,7 +38,7 @@ plugin.tx_datectimeline {
 	}
 	persistence {
 		classes {
-		    \Date\DatecTimeline\Domain\Model\Date {
+		    Date\DatecTimeline\Domain\Model\Date {
 		        mapping {
 		            columns {
 		            	crdate.mapOnProperty = crdate
@@ -47,20 +47,42 @@ plugin.tx_datectimeline {
 		            }  
 		        }
 		    }
+		    Datec\DatecTimeline\Domain\Model\FeUser {
+	            mapping {
+	                 tableName = fe_users
+	                 recordType = Tx_Extbase_Domain_Model_FrontendUser
+	                 columns {
+	                     tx_datectimeline_date_color.mapOnProperty = dateColor
+	                 }
+	             }
+	        }
 		}
 		storagePid = {$plugin.tx_datectimeline.persistence.storagePid}
 	}
     settings {
         storagePid = {$plugin.tx_datectimeline.persistence.storagePid}
         reminderMailAfterCreation = 1
+        reminderMailAfterEdit = 1
         langOptions = 1
         mail {
         	internMailFrom = timeline@no-reply.com
         	internMailFromName = Datec Timeline
         }
         display {
-        	dateFormat = d.m.Y H:i
-        	dateFormatJS = dd. MM yy
+        	dateTimeFormat = d.m.Y H:i
+        	dateFormat = d.m.Y
         }
     }
+}
+
+config.tx_extbase.persistence.classes {
+  Datec\DatecTimeline\Domain\Model\FeUser {
+    mapping {
+      tableName = fe_users
+      recordType = Tx_Extbase_Domain_Model_FrontendUser
+      columns {
+        tx_datectimeline_date_color.mapOnProperty = dateColor
+      }
+    }
+  }
 }

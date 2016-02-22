@@ -42,7 +42,7 @@ class DateResultBuilder implements \TYPO3\CMS\Core\SingletonInterface {
 	/**
 	 * $feUserRepository
 	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @var \Datec\DatecTimeline\Domain\Repository\FeUserRepository
 	 * @inject
 	 */
 	protected $feUserRepository;
@@ -65,13 +65,24 @@ class DateResultBuilder implements \TYPO3\CMS\Core\SingletonInterface {
 		$dateResult->content = $this->generateContent($date, $pluginConfig);	
 
 		$creator = $this->feUserRepository->findByUid($date->getCruserId());
-		if ($creator instanceof \TYPO3\CMS\Extbase\Domain\Model\FrontendUser) {			
-			$dateResult->className = array('date-'.$creator->getUsername());	
-		}	
+		if ($creator instanceof \Datec\DatecTimeline\Domain\Model\FeUser) {			
+			$dateResult->className = array('date-'.$creator->getUsername());
+			if ($creator->getDateColor() != '') {
+				$dateResult->borderColor = $creator->getDateColor();
+				$dateResult->backgroundColor = $creator->getDateColor();
+			}
+		}
 		
 		return $dateResult;
 	}
 	
+	/**
+	 * Renders the content for calendar display from a single template.
+	 * 
+	 * @param Date $date
+	 * @param unknown $pluginConfig
+	 * @return unknown
+	 */
 	private function generateContent(Date $date, $pluginConfig) {
 		$contentView = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
 		$templateName = 'Date/DateCalendarView.html';
@@ -82,9 +93,9 @@ class DateResultBuilder implements \TYPO3\CMS\Core\SingletonInterface {
 		$contentView->getRequest()->setControllerExtensionName('DatecTimeline');
 		$contentView->assign('date', $date);
 		$contentView->assign('settings', $this->pluginConfig['settings']);
-		
+
 		$creator = $this->feUserRepository->findByUid($date->getCruserId());
-		if ($creator instanceof \TYPO3\CMS\Extbase\Domain\Model\FrontendUser) {
+		if ($creator instanceof \Datec\DatecTimeline\Domain\Model\FeUser) {
 			$contentView->assign('creator', $creator);
 		}
 		

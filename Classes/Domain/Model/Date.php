@@ -45,7 +45,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $description;
 	
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUser>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Datec\DatecTimeline\Domain\Model\FeUser>
 	 */
 	protected $participants;
 	
@@ -119,20 +119,20 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 	
 	/**
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $participant
+	 * @param \Datec\DatecTimeline\Domain\Model\FeUser $participant
 	 * @return void
 	 */
-	public function addParticipant(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $participant) {
+	public function addParticipant(\Datec\DatecTimeline\Domain\Model\FeUser $participant) {
 		if ($this->participants->contains($participant) === FALSE) { // avoid duplicates
 			$this->participants->attach($participant);
 		}
 	}
 	
 	/**
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $participants
+	 * @param \Datec\DatecTimeline\Domain\Model\FeUser $participants
 	 * @return void
 	 */
-	public function removeParticipant(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $participant) {
+	public function removeParticipant(\Datec\DatecTimeline\Domain\Model\FeUser $participant) {
 		$this->participants->detach($participant);
 	}
 	

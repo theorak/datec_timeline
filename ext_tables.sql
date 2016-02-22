@@ -37,3 +37,9 @@ CREATE TABLE tx_datectimeline_domain_model_date_fe_users_mm (
 	KEY uid_foreign (uid_foreign),
 	PRIMARY KEY (uid)
 );
+#
+# Altering table 'fe_users' for 'tx_datectimeline_date_color'
+#
+CREATE TABLE fe_users (
+    tx_datectimeline_date_color varchar(10) DEFAULT '' NOT NULL
+);

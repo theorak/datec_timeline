@@ -38,13 +38,17 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * 
 	 * @param int $start timestamp
 	 * @param int $stop timestamp
+	 * @param array $creatorIds (optional) uid list of creators
 	 */
-	public function findByStartStop($start, $stop) {
+	public function findByFilterCriteria($start, $stop, $creatorIds = NULL) {
 		$constraints = array();
 		$query = $this->createQuery();
 	
 		$constraints[] = $query->greaterThanOrEqual('start', $start);
 		$constraints[] = $query->logicalOr($query->lessThanOrEqual('stop', $stop), $query->equals('stop', 0));
+		if (isset($creatorIds) && !empty($creatorIds)) {
+			$constraints[] = $query->in('cruser_id', $creatorIds);
+		}
 	
 		return $query->matching($query->logicalAnd($query->logicalAnd($constraints)))->execute();
 	}
@@ -53,9 +57,8 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Search all future events, optionally filtered by remindable since now.
 	 * 
 	 * @param string $filterRemindable
-	 * @param string $storagePid
 	 */
-	public function findUpcoming($filterRemindable = FALSE, $storagePid = NULL) {
+	public function findUpcoming($filterRemindable = FALSE) {
 		$constraints = array();
 		$now = new \DateTime();
 		$now = $now->getTimestamp();
@@ -70,7 +73,7 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$constraints[] = $query->greaterThanOrEqual('stop', $now);
 		
 		if ($filterRemindable) {
-			$constraints[] = $query->logicalAnd($query->lessThanOrEqual('reminder_start', $now), $query->equalsNot('reminder_start', 0));
+			$constraints[] = $query->logicalAnd($query->lessThanOrEqual('reminder_start', $now), $query->logicalNot($query->equals('reminder_start', 0)));
 		}
 		
 		return $query->matching($query->logicalAnd($query->logicalAnd($constraints)))->execute();

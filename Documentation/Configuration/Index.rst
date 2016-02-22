@@ -58,5 +58,6 @@ plugin.tx_datectimeline.
 	settings.mail.internMailFromName                    string          Name to display for automatic notification Mails [FROM-NAME].                   Datec Timeline
 	settings.display.comments.dateFormat                string          Like 'settings.display.dateFormat' for comments only.                           d.m.Y - H:
 	settings.reminderMailAfterCreation                  string          Send out first reminder E-Mail after creation of appointment.                   true
+	settings.reminderMailAfterEdit                      string          Send out a reminder E-Mail after each edit of appointment.                      true
 	settings.langOptions                                string          Hides/shows language options.                                                   true
 	================================================    =============   ==============================================================================  ===========

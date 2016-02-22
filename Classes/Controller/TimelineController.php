@@ -58,7 +58,7 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	/**
 	 * $feUserRepository
 	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @var \Datec\DatecTimeline\Domain\Repository\FeUserRepository
 	 * @inject
 	 */
 	protected $feUserRepository;
@@ -102,7 +102,14 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 *
 	 * @return void
 	 */
-	public function showTimelineAction() {	
+	public function showTimelineAction() {
+		$creators = $this->feUserRepository->findDateCreatorsByRelations();
+		if ($creators) {
+			$creators = $creators->toArray();
+			if (!empty($creators)) {
+				$this->view->assign('creators', $creators);
+			}
+		}
 		
 		$this->view->assign('pageId', $GLOBALS['TSFE']->id);
 		$this->view->assign('settings', $this->settings);
@@ -113,11 +120,14 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 *
 	 * @return string JSON result
 	 */
-	public function loadDatesAction() {		
+	public function loadDatesAction() {
 		$access = $this->checkAccess();		
 		if ($access) {
 			if ($this->request->hasArgument('start') && $this->request->hasArgument('stop')) {
-				$dates = $this->dateRepository->findByStartStop($this->request->getArgument('start'), $this->request->getArgument('stop'));
+				if ($this->request->hasArgument('creatorIds')) {
+					$creatorIds = $this->request->getArgument('creatorIds');
+				}
+				$dates = $this->dateRepository->findByFilterCriteria($this->request->getArgument('start'), $this->request->getArgument('stop'), $creatorIds);
 			} else {
 				$dates = $this->dateRepository->findAll();		
 			}
@@ -141,7 +151,7 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			}
 		} else {
 			$datesResult = new \stdClass();
-			$datesResult->status = 'warning';
+			$datesResult->status = 'error';
 			$datesResult->message = LocalizationUtility::translate('tx_datectimeline.errors.noAccess',$this->extKey);
 		}
 		
@@ -156,9 +166,8 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	public function newDateAction() {
 		$access = $this->checkAccess();
 		if ($access) {
-			$now = new \DateTime();
 			$participants = array();
-	
+			
 			$query = $this->feUserRepository->createQuery();
 			$querySettings = $query->getQuerySettings();
 			$querySettings->setRespectStoragePage(FALSE); // the repository picks up the wrong storage pid from somewhere
@@ -182,13 +191,15 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			}
 			
 			$date = new Date();
-			$date->setReminderStart($now);
 			$start = new \DateTime($this->request->getArgument('start'));					
 			$date->setStart($start);
 			if ($this->request->hasArgument('stop')) {
 				$stop = new \DateTime($this->request->getArgument('stop'));	
 				$date->setStop($stop);
 			}
+			$reminderStart = clone $start;
+			$reminderStart->setTime(0, 0, 0);
+			$date->setReminderStart($reminderStart);
 			
 			$this->view->assign('participants', $participants);
 			$this->view->assign('date', $date);
@@ -340,6 +351,8 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			$date = $this->dateRepository->findByUid($_POST['tx_datectimeline_timeline']['dateId']);
 			
 			if ($this->feUser['uid'] == $date->getCruserId()) {				// is creator, can save
+				$recipients = array();
+				
 				// set all Data from form
 				if (isset($_POST['tx_datectimeline_timeline']['date']['title'])) {
 					$date->setTitle($_POST['tx_datectimeline_timeline']['date']['title']);
@@ -373,11 +386,40 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 						$feUser = $this->feUserRepository->findByUid($feUserId);
 						if ($feUser) {
 							$date->addParticipant($feUser);
+							if ($this->settings['reminderMailAfterCreation']) {
+								if ($feUser->getLastname() !== '') {
+									$participantName = $feUser->getLastname();
+									if ($feUser->getFirstname() !== '') {
+										$participantName .= ', '.$feUser->getFirstname();
+									}
+								} else {
+									$participantName = $feUser->getUsername();
+								}
+								$recipients[$feUser->getEmail()] = $participantName;
+							}
 						}
 					}
-				}
+				}	
+
+				$creator = $this->feUserRepository->findByUid($date->getCruserId());
+				if ($this->settings['reminderMailAfterEdit']) {
+					if ($creator->getLastname() !== '') {
+						$cruserName = $creator->getLastname();
+						if ($creator->getFirstname() !== '') {
+							$cruserName .= ', '.$creator->getFirstname();
+						}
+					}  else {
+						$cruserName = $creator->getUsername();
+					}
+					$recipients[$creator->getEmail()] = $cruserName;
 					
+					$subject = LocalizationUtility::translate('tx_datectimeline.mail.reminderSubject', 'datec_timeline');
+					$msg = $this->mailService->generateReminderMail($date, $recipients, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK));
+					$this->mailService->sendBccMails($subject, $msg, $recipients, $this->settings);
+				}
+				
 				$this->dateRepository->update($date);
+				
 				
 				$dateResultBuilder = $this->objectManager->get('Datec\\DatecTimeline\\Builder\\DateResultBuilder');
 				$dateResultBuilder->setPluginConfiguration($this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK));

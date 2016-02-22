@@ -4,7 +4,7 @@ namespace Datec\DatecTimeline\Task;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Datec\DatecTimeline\Domain\Model\Date;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
+use Datec\DatecTimeline\Domain\Model\FeUser;
 
 /**
  * Task to remind creators and participants of upcomming dates.
@@ -105,7 +105,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$this->injectDateRepository();
 		$this->injectFeUserRepository();
 		$this->injectMailService();
-		
+		xdebug_break();
 		$dates = $this->dateRepository->findUpcoming(TRUE);		
 		if (!$dates) { // db error
 			return FALSE;
@@ -117,7 +117,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				$recipients = array();
 				
 				$creator = $this->feUserRepository->findByUid($date->getCruserId());
-				if ($creator instanceof FrontendUser) {
+				if ($creator instanceof FeUser) {
 					if ($creator->getEmail() !== '') {
 						if ($creator->getLastname() !== '') {
 							$cruserName = $creator->getLastname();
@@ -134,7 +134,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				$participants = $date->getParticipants();
 				if (!empty($participants)) {
 					foreach ($participants as $participant) {
-						if ($participant instanceof FrontendUser) {
+						if ($participant instanceof FeUser) {
 							if ($participant->getEmail() !== '') {
 								if ($participant->getLastname() !== '') {
 									$participantName = $participant->getLastname();

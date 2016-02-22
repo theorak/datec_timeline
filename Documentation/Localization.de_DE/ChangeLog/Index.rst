@@ -6,7 +6,7 @@
 .. include:: ../../Includes.txt
 
 
-.. _change-log:
+.. _change-logDE:
 
 Change Log
 ==========

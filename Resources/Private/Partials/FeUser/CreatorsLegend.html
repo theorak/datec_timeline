@@ -1,0 +1,15 @@
+<p>
+  <strong><f:translate key="tx_datectimeline_domain_model_date.cruser_plural" />: </strong>
+  <f:for each="{creators}" as="creator">
+  	<span class="tx-datec-timeline-creator" data-creatorId="{creator.uid}" data-filterState="active" style="{f:if(condition:creator.dateColor,then:'background-color:{creator.dateColor}; border:1px solid {creator.dateColor};',else:'')}">
+	 	<f:if condition="{creator.lastName}">
+			<f:then>
+				{creator.lastName}<f:if condition="{creator.firstName}">, {creator.firstName}</f:if>
+			</f:then>
+			<f:else>
+				{creator.username}
+			</f:else>
+		</f:if>
+  	</span>
+  </f:for>
+</p>

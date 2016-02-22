@@ -6,10 +6,10 @@
 .. include:: ../../Includes.txt
 
 
-.. _admin-manual:
+.. _admin-manualDE:
 
 Administrator Handbuch
-====================
+======================
 
 Zielgruppe: **Administratoren**
 
@@ -20,7 +20,7 @@ Zielgruppe: **Administratoren**
 		:depth: 3
 
 Anforderungen
-------------
+-------------
 
 .. caution::
 	Es muss das JQuery Javascript Framework und JQuery-UI Plugin selbst installiert werden.
@@ -35,7 +35,7 @@ Installation
 5) (optional) Fügen Sie für die Erinnerungsmail einen neuen Task zu ihrem Planer hinzu
 
 Plugin hinzufügenInsert Plugin
--------------
+------------------------------
 
 1) Fügen Sie ein neues Inhalts Element hinzu, wechseln dort auf den Reiter Plugins und wählen dort Generelles Plugin hinzu
 

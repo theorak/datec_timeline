@@ -6,7 +6,7 @@
 .. include:: ../../Includes.txt
 
 
-.. _faq:
+.. _faqDE:
 
 FAQ
 ===

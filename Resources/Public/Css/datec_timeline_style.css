@@ -8,10 +8,31 @@
 .tx-datec-timeline-date > div {
 	margin-bottom: 5px;
 }
+.tx-datec-timeline .fc-month-view .fc-body .fc-row {
+	min-height: 6em;
+}
 .tx-datec-timeline .typo3-messages{font-weight:600}
 .tx-datec-timeline .typo3-message.message-ok{color:green}
 .tx-datec-timeline .typo3-message.message-warning{color:inherit}
 .tx-datec-timeline .typo3-message.message-error{color:red}
+.tx-datec-timeline-creator {
+	display: inline-block;
+	padding: 2px 4px;
+	margin-right: 5px;
+	margin-bottom: 2px;
+	cursor: pointer;
+	color: #fff;
+}
+.tx-datec-timeline-creator[data-filterstate="inactive"] {
+	text-decoration: line-through;
+	background-color: gray !important;
+	border-color: gray !important;
+}
+.datetimepicker.form-control[readonly],
+.datepicker.form-control[readonly] {
+    cursor: default;
+    background-color: #fff;
+}
 /* for small screens: only day view */
 @media (max-width:991px) {
 	#tx-datec-timeline-canvas > .fc-toolbar > .fc-right {
@@ -20,13 +41,16 @@
 	#tx-datec-timeline-canvas > .fc-toolbar > * > :first-child {
 	    font-size: 20px;
 	}
-}
-
-/* example for overwriting full calendar backround based on date creator */
-.fc-event.date-cruser {
-    border: 1px solid #green;
-    background-color: #green;
-}
-.fc-event .fc-bg {
-	/* opacity: 0; *//* note that all backrounds have a brightening overlay by default */
+	.fc-prev-button.fc-button,
+	.fc-next-button.fc-button {
+	    height: 1.5em;
+	}
+	.fc-prev-button.fc-button > .fc-icon,
+	.fc-next-button.fc-button > .fc-icon {
+	    font-size: 0.7em;
+	}
+	.fc-prev-button.fc-button > .fc-icon-left-single-arrow::after,
+	.fc-next-button.fc-button > .fc-icon-right-single-arrow::after {
+    	top: -14%;
+	}	
 }

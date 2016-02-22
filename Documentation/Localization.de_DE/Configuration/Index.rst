@@ -15,7 +15,7 @@ Zielgruppe: **Administratoren**
 		:local:
 		:depth: 3
 
-.. _configuration:
+.. _configurationDE:
 
 Konfigurationshandbuch
 ======================
@@ -23,7 +23,7 @@ Konfigurationshandbuch
 Dieses Kapitel beschreibt alle Einstellungen von Datec Timeline die über TypoScript konfigurierbar sind.
 Zum Ändern der Einstellungen fügen Sie bitte eines Erweiterungstemplate dem ROOT Template hinzu.
 
-.. _configuration-typoscript:
+.. _configuration-typoscriptDE:
 
 Minimale Einstellungen
 -----------------------
@@ -58,6 +58,7 @@ Generelle Einstellungen
 	settings.mail.internMailFrom                       string          E-mail Adresse für die automatische Email Benachrichtigung [FROM]               timeline@no-reply.com
 	settings.mail.internMailFromName                   string          Anzeigename für die automatische Email Benachrichtigung [FROM-NAME].            Datec Timeline
 	settings.display.comments.dateFormat               string          Datums Format nur für die Bemerkungen                                           d.m.Y - H:
-	settings.reminderMailAfterCreation                 string          Die erste Email nach der Erstellung des Termins                                 true
+	settings.reminderMailAfterCreation                 string          Die erste Email nach der Erstellung eines Termins                               true
+	settings.reminderMailAfterEdit                     string          Eine Email nach jeder Enpassung eines Termins                                   true
 	settings.langOptions                               string          Sprachen ausblenden / anzeigen                                                  true
 	================================================   =============   ==============================================================================  ============

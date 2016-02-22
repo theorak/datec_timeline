@@ -1,4 +1,4 @@
-if (typeof jQuery === 'undefined' || typeof jQuery.ui === 'undefined') {
+﻿if (typeof jQuery === 'undefined' || typeof jQuery.ui === 'undefined') {
 	console.log("DatecTimeline script depends on jQuery and jQuery-ui.");
 	console.log("Note that jQuery-ui should also have the draggable and resize plugins active for all interactions.");
 }
@@ -7,7 +7,8 @@ var DatecTimeline = {
 	pagetype: '2220', // pageNum for ajax requests
 	timeline: null,
 	currentLangCode: 'de',
-	currentDateTimeFormat: $('#tx-datec-timeline-dateFormat').val(),
+	currentDateTimeFormat: $('#tx-datec-timeline-dateTimeFormat').val(),
+	currentDateFormat: $('#tx-datec-timeline-dateFormat').val(),
 	showTimeline: function() {		
 		 $('#tx-datec-timeline-canvas').fullCalendar({
 			 header: {
@@ -15,6 +16,7 @@ var DatecTimeline = {
 			 	center: 'title',
 			 	right: 'month,agendaWeek,agendaDay'
 			 },
+			 height: 'auto',
 			 lang: DatecTimeline.currentLangCode,
 			 editable: true,
 			 selectable: true,
@@ -31,24 +33,33 @@ var DatecTimeline = {
 	    });		
 	},
 	loadDates: function(start, end, timezone, callback) {
+		var data = {
+    		'type': DatecTimeline.pagetype,	
+    		'tx_datectimeline_timeline[controller]': "Timeline",
+    		'tx_datectimeline_timeline[action]': "loadDates",
+    		'tx_datectimeline_timeline[start]': start.unix(),
+    		'tx_datectimeline_timeline[stop]': end.unix()
+    	}
+		if ($('.tx-datec-timeline-creator').length) { 
+			 var creators = $('.tx-datec-timeline-creator[data-filterstate="active"]');
+			 for (var i=0; i < creators.length; i++) {
+				data['tx_datectimeline_timeline[creatorIds]['+i+']'] = $(creators[i]).data('creatorid');
+			 }
+		}
 		$.ajax({
 			async: true,
 			dataType: "json",
-			data: {
-	    		'type': DatecTimeline.pagetype,	
-	    		'tx_datectimeline_timeline[controller]': "Timeline",
-	    		'tx_datectimeline_timeline[action]': "loadDates",
-	    		'tx_datectimeline_timeline[start]=': start.unix(),
-	    		'tx_datectimeline_timeline[stop]=': end.unix()
-	    	},
+			data: data,
 		    url: DatecTimeline.path,
 		    success: function(response) {
 		    	console.log(response);
 		    	if (typeof response.status === "undefined") {
 		    		callback(response);
 		    	} else {
-		    		// render flash message
-		    		DatecTimeline.addFlashMessage(response.message, '', response.status);
+		    		//  render flash message only on error
+		    		if (response.status === "error") {
+		    			DatecTimeline.addFlashMessage(response.message, '', response.status);
+		    		}
 		    	}
 		    },
 		    error: function(error) {
@@ -58,35 +69,42 @@ var DatecTimeline = {
 		});
 	}, 
 	newDateForm: function(start, stop) {
-		stop = 0
     	// inital data for form
-    	var data = {
-    		'type': DatecTimeline.pagetype,	
-    		'tx_datectimeline_timeline[controller]': "Timeline",
-    		'tx_datectimeline_timeline[action]': "newDate",
-    		'tx_datectimeline_timeline[start]': '@' + start.unix()
-    	};
     	$.ajax({
     		url: DatecTimeline.path,
     		context: this,
-    		data: data,
+    		data: {
+        		'type': DatecTimeline.pagetype,	
+        		'tx_datectimeline_timeline[controller]': "Timeline",
+        		'tx_datectimeline_timeline[action]': "newDate",
+        		'tx_datectimeline_timeline[start]': '@' + start.unix(),
+        		'tx_datectimeline_timeline[stop]': '@' + stop.unix()
+        	},
     		success: function(data, state, jqXHR) {
         		// open form in jQuery-ui modal dialog
     			$("#tx-datec-timeline-form-canvas").html(data).dialog({
     				modal:true,
     				buttons: {
-    			        OK: function() {
+    			        [DatecTimeline.localizeDialogButton('ok')]: function() {
     			        	DatecTimeline.createDate();
     			        	$(this).dialog('close');
     			        },
-    			        Cancel: function() { // TODO: localize buttons
+    			        [DatecTimeline.localizeDialogButton('cancel')]: function() {
     			            $(this).dialog('close');
     			            $('#tx-datec-timeline-canvas').fullCalendar('unselect');
     			        }
     			    }
     			}).dialog('open');
     			$('.datetimepicker').datetimepicker({
-    				format:DatecTimeline.currentDateTimeFormat,
+    				dayOfWeekStart: DatecTimeline.currentLangCode == "de" ? 1 : 0,
+    				format: DatecTimeline.currentDateTimeFormat,
+    				onChangeDateTime: DatecTimeline.saveDateTime
+    			});
+    			$('.datepicker').datetimepicker({
+    				timepicker:false,
+    				dayOfWeekStart: DatecTimeline.currentLangCode == "de" ? 1 : 0,
+    				format: DatecTimeline.currentDateFormat,
+    				formatDate: DatecTimeline.currentDateFormat,
     				onChangeDateTime: DatecTimeline.saveDateTime
     			});
     			DatecTimeline.saveAllDateTimes();
@@ -106,6 +124,7 @@ var DatecTimeline = {
             data: $('#tx-datec-timeline-dateForm').serialize(),
             success: function(data, state, jqXHR) {     
             	if (typeof data.date !== "undefined") {
+            		$('#tx-datec-timeline-canvas').fullCalendar('unselect');
             		$('#tx-datec-timeline-canvas').fullCalendar('renderEvent', data.date, true);
             	} else {
             		$('#tx-datec-timeline-canvas').fullCalendar('unselect');
@@ -137,14 +156,14 @@ var DatecTimeline = {
     				$("#tx-datec-timeline-form-canvas").html(data).dialog({
         				modal:true,
         				buttons: {
-        			        OK: function() {
+        					[DatecTimeline.localizeDialogButton('ok')]: function() {
         			        	DatecTimeline.updateDate();
         			        	$(this).dialog('close');
         			        },
-        			        Cancel: function() {
+        			        [DatecTimeline.localizeDialogButton('cancel')]: function() {
         			            $(this).dialog('close');
         			        },
-        			        Delete: function() {
+        			        [DatecTimeline.localizeDialogButton('delete')]: function() {
         			        	check = confirm(unescape("Termin l%F6schen%3F"));
         			    		if (check) {
         			    			DatecTimeline.deleteDate(date);			        	
@@ -154,9 +173,18 @@ var DatecTimeline = {
         			    }
         			}).dialog('open');    			
         			$('.datetimepicker').datetimepicker({
+        				dayOfWeekStart: DatecTimeline.currentLangCode == "de" ? 1 : 0,
         				format:DatecTimeline.currentDateTimeFormat,
         				onChangeDateTime: DatecTimeline.saveDateTime,
         				minDate: 0										// defaults to today minimum
+        			});
+        			$('.datepicker').datetimepicker({
+        				dayOfWeekStart: DatecTimeline.currentLangCode == "de" ? 1 : 0,
+        				timepicker:false,
+        				format: DatecTimeline.currentDateFormat,
+        				formatDate: DatecTimeline.currentDateFormat,
+        				onChangeDateTime: DatecTimeline.saveDateTime,
+        				minDate: 0
         			});
         			DatecTimeline.saveAllDateTimes();
     			}
@@ -258,13 +286,13 @@ var DatecTimeline = {
 	},
 	saveDateTime: function(currentDateTime) {
 		// gets datetime values as UTC for form
-		if (currentDateTime != '') {
+		if (currentDateTime != null) {
 			$('#tx-date-timeline-date-'+arguments[1].data('datetime')).val(currentDateTime.toISOString());
 		}
 	},
 	saveAllDateTimes: function() {
 		// saves all datemes as UTC for form
-		$('.datetimepicker').each(function() {
+		$('.datetimepicker, .datepicker').each(function() {
 			if ($(this).val() != '') {
 				$('#tx-date-timeline-date-'+$(this).data('datetime')).val(moment($(this).val(), 'DD.MM.YYYY HH:mm').toISOString());
 			}
@@ -284,14 +312,36 @@ var DatecTimeline = {
     },
     emptyFlashMessages: function() {
     	$('#tx-datec-timeline-info').empty();
-    }
+    },
+    localizeDialogButton: function(button) {
+    	return DatecTimeline.buttonsLL[DatecTimeline.currentLangCode][button];
+    },
+    buttonsLL: {
+		'de': {'ok':'OK','cancel':'Abbrechen','delete':'Löschen'},
+		'en': {'ok':'OK','cancel':'Cancel','delete':'Delete'}    		
+	}
 }
 $().ready(function() {
 	if ($('#tx-datec-timeline-canvas').length) {
+		$.fullCalendar.langs.de.allDayText = "GT"; // whole day adjusted for mobile view
 		if ($('#tx-datec-timeline-lang-selector').length) {
 			DatecTimeline.buildLangOptions();
 		}
 		DatecTimeline.showTimeline();
 		$.datetimepicker.setLocale(DatecTimeline.currentLangCode);
+		if ($('.tx-datec-timeline-creator').length) { 
+			$('.tx-datec-timeline-creator').click(function() {
+				if ($(this).attr('data-filterstate') == 'active' && $('.tx-datec-timeline-creator[data-filterstate="active"]').length > 1) { // cannot filter less than 1
+					$(this).attr('data-filterstate', 'inactive');
+				} else {
+					$(this).attr('data-filterstate', 'active');
+				}
+				$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
+			});
+		}
+		// refresh the calendar every 20 seconds
+		setInterval(function() {
+			$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
+		}, 30000);		
 	}
 });

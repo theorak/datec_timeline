@@ -18,6 +18,9 @@
 			<trans-unit id="tx_datectimeline_domain_model_date.cruser">
 				<target>Ersteller</target>
 			</trans-unit>
+			<trans-unit id="tx_datectimeline_domain_model_date.cruser_plural">
+				<target>Ersteller</target>
+			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.start">
 				<target>Von</target>
 			</trans-unit>
@@ -29,7 +32,15 @@
 			</trans-unit>				
 			<trans-unit id="tx_datectimeline_domain_model_date.participants">
 				<target>Teilnehmer</target>
-			</trans-unit>			
+			</trans-unit>	
+			
+			<trans-unit id="fe_users.dateColor">
+				<target>Datec Timeline - Terminfarbe</target>
+			</trans-unit>
+
+			<trans-unit id="tce.colorPicker">
+				<target>Farbe auswählen</target>
+			</trans-unit>	
 			
 			<trans-unit id="tx_datectimeline.errors.dbError">
 				<target>Fehler beim Zugriff auf die Datenbank!</target>
