@@ -15,10 +15,11 @@ Diese Frontend Erweiterung basiert auf der FullCalendar funktionalität, in Komb
 
 * Kalender und Agenda Ansicht pro Monat, Woche oder Tag
 * Termine können in der Frontend Ansicht bearbeitet werden
-* einfaches verschieben der Termine durch Drag&Drop
+* Einfaches Verschieben der Termine durch Drag&Drop
 * Termine haben einen Titel, eine Beschreibung, Ersteller oder Teilnehmer aus den Frontend Benutzern und ein Erinnerungsdatum
 * Zugriff auf die Plugin Feature können über die Zugriffsrechte des Plugin Content Elements gesteuert werden
-* die Frontend Ansicht ist für das Responsiv Design optimiert und mit Bootstrap 3 getestet
+* Die Frontend Ansicht ist für das Responsiv Design optimiert und mit Bootstrap 3 getestet
+* Frontend-Benutzer werden als Ersteller und Teilnehmer eingesetzt.
 
 .. tip::
 

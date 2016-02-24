@@ -241,15 +241,15 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			$date->setDescription($_POST['tx_datectimeline_timeline']['date']['description']);
 			
 			// TODO: format the date properly in the form
-			$date->setStart($this->getDateTimeJS($_POST['tx_datectimeline_timeline']['date']['start']));			
+			$date->setStart($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['start']));			
 			if (isset($_POST['tx_datectimeline_timeline']['date']['stop']) && !empty($_POST['tx_datectimeline_timeline']['date']['stop'])) {
-				$date->setStop($this->getDateTimeJS($_POST['tx_datectimeline_timeline']['date']['stop']));
+				$date->setStop($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['stop']));
 			}			
 			if (isset($_POST['tx_datectimeline_timeline']['date']['reminderStart'])) {
-				$date->setReminderStart($this->getDateTimeJS($_POST['tx_datectimeline_timeline']['date']['reminderStart']));
+				$date->setReminderStart($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['reminderStart']));
 			}
 			
-			if (isset($_POST['tx_datectimeline_timeline']['date']['participants'])) {
+			if (isset($_POST['tx_datectimeline_timeline']['date']['participants']) && !empty($_POST['tx_datectimeline_timeline']['date']['participants'])) {
 				foreach ($_POST['tx_datectimeline_timeline']['date']['participants'] as $feUserId) {
 					$feUser = $this->feUserRepository->findByUid($feUserId);
 					if ($feUser) {
@@ -360,49 +360,23 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 				if (isset($_POST['tx_datectimeline_timeline']['date']['description'])) {
 					$date->setDescription($_POST['tx_datectimeline_timeline']['date']['description']);
 				}
-					
+				
 				// differ only date change (with timestamp) to editing date
-				if (strpos($_POST['tx_datectimeline_timeline']['date']['start'], '@') !== FALSE) {		
-					$utcTimeZone = new \DateTimeZone('UTC');
-					$currentTimeZone = new \DateTimeZone(date_default_timezone_get());
-					$currentDate = new \DateTime();
-					$offset = $currentTimeZone->getOffset($currentDate) - $utcTimeZone->getOffset($currentDate);
-					
-					$start = intval(substr($_POST['tx_datectimeline_timeline']['date']['start'], 1), 10) - $offset;
-					$stop = intval(substr($_POST['tx_datectimeline_timeline']['date']['stop'], 1), 10) - $offset;
-					$date->setStart(new \DateTime('@'.$start));
-					$date->setStop(new \DateTime('@'.$stop));
+				if (strpos($_POST['tx_datectimeline_timeline']['date']['start'], '@') !== FALSE) {	
+					$date->setStart($this->getDateTimeJS(intval(substr($_POST['tx_datectimeline_timeline']['date']['start'], 1), 10)));
+					$date->setStop($this->getDateTimeJS(intval(substr($_POST['tx_datectimeline_timeline']['date']['stop'], 1), 10)));
 				} else {
-					$date->setStart($this->getDateTimeJS($_POST['tx_datectimeline_timeline']['date']['start']));
-					$date->setStop($this->getDateTimeJS($_POST['tx_datectimeline_timeline']['date']['stop']));
+					// date from form is utc, and without timezone
+					$date->setStart($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['start']));
+					$date->setStop($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['stop']));
 				}
 				
 				if (isset($_POST['tx_datectimeline_timeline']['date']['reminderStart'])) {
-					$date->setReminderStart($this->getDateTimeJS($_POST['tx_datectimeline_timeline']['date']['reminderStart']));
+					$date->setReminderStart($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['reminderStart']));
 				}
-					
-				if (isset($_POST['tx_datectimeline_timeline']['date']['participants'])) {
-					foreach ($_POST['tx_datectimeline_timeline']['date']['participants'] as $feUserId) {
-						$feUser = $this->feUserRepository->findByUid($feUserId);
-						if ($feUser) {
-							$date->addParticipant($feUser);
-							if ($this->settings['reminderMailAfterCreation']) {
-								if ($feUser->getLastname() !== '') {
-									$participantName = $feUser->getLastname();
-									if ($feUser->getFirstname() !== '') {
-										$participantName .= ', '.$feUser->getFirstname();
-									}
-								} else {
-									$participantName = $feUser->getUsername();
-								}
-								$recipients[$feUser->getEmail()] = $participantName;
-							}
-						}
-					}
-				}	
-
-				$creator = $this->feUserRepository->findByUid($date->getCruserId());
+				
 				if ($this->settings['reminderMailAfterEdit']) {
+					$creator = $this->feUserRepository->findByUid($date->getCruserId());
 					if ($creator->getLastname() !== '') {
 						$cruserName = $creator->getLastname();
 						if ($creator->getFirstname() !== '') {
@@ -412,7 +386,32 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 						$cruserName = $creator->getUsername();
 					}
 					$recipients[$creator->getEmail()] = $cruserName;
-					
+				}
+
+				if (isset($_POST['tx_datectimeline_timeline']['date']['participants']) && !empty($_POST['tx_datectimeline_timeline']['date']['participants'])) {
+					foreach ($_POST['tx_datectimeline_timeline']['date']['participants'] as $feUserId) {
+						$feUser = $this->feUserRepository->findByUid($feUserId);
+						if ($feUser) {
+							$date->addParticipant($feUser);
+						}
+					}
+				}
+				
+				if (count($date->getParticipants()) > 0 && $this->settings['reminderMailAfterEdit']) {
+					foreach ($date->getParticipants() as $feUser) {
+						if ($feUser->getLastname() !== '') {
+							$participantName = $feUser->getLastname();
+							if ($feUser->getFirstname() !== '') {
+								$participantName .= ', '.$feUser->getFirstname();
+							}
+						} else {
+							$participantName = $feUser->getUsername();
+						}
+						$recipients[$feUser->getEmail()] = $participantName;
+					}					
+				}
+
+				if ($this->settings['reminderMailAfterEdit']) {					
 					$subject = LocalizationUtility::translate('tx_datectimeline.mail.reminderSubject', 'datec_timeline');
 					$msg = $this->mailService->generateReminderMail($date, $recipients, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK));
 					$this->mailService->sendBccMails($subject, $msg, $recipients, $this->settings);
@@ -521,13 +520,33 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	}
 	
 	/**
-	 * Our JS moves only dates as UTC timestamp or ISO 8601.
+	 * Our JS moves only dates as local time UNIX timestamp.
 	 * Before extbase can save in UTC, the DateTime must hold the timezone information.
-	 * 
-	 * @param string $value
+	 *
+	 * @param int $value UNIX timestamp
 	 * @return NULL
 	 */
 	private function getDateTimeJS($value) {
+		if ($value === NULL) {
+			return NULL;
+		}
+		$utcTimeZone = new \DateTimeZone('UTC');
+		$currentTimeZone = new \DateTimeZone(date_default_timezone_get());
+		$currentDate = new \DateTime();
+		$offset = $currentTimeZone->getOffset($currentDate) - $utcTimeZone->getOffset($currentDate);		
+		$value = $value - $offset;
+		$date = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('DateTime', '@'.$value, $utcTimeZone);
+		return $date->setTimezone($currentTimeZone);
+	}
+	
+	/**
+	 * Our Form moves only dates as UTC in ISO 8601.
+	 * Before extbase can save in UTC, the DateTime must hold the timezone information.
+	 * 
+	 * @param string $value datetime ISO 8601
+	 * @return NULL
+	 */
+	private function getDateTimeForm($value) {
 		if ($value === NULL) {
 			return NULL;
 		}

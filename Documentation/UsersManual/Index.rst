@@ -25,7 +25,7 @@ Editors - Creator of Appointments
 
 The color that appointments appear in is based around the creator of that appointment. All creators are frontend users, thus to change his color, look for the Date Color option in the users data.
 
-.. figure:: ../Images/datec_timeline_04_creator.png
+.. figure:: ../Images/datec_timeline_04_creator.jpg
 	:width: 900px
 	:alt: Backend view
 
@@ -40,7 +40,7 @@ The controls on the right also let the user switch between monthly and per day v
 Also above the timeline you'll find the list of creators of appointments, click them to filter the viewed appointments.
 This view will refresh every 30 seconds.
 
-.. figure:: ../Images/datec_timeline_02_views.png
+.. figure:: ../Images/datec_timeline_02_views.jpg
 	:width: 900px
 	:alt: Backend view
 
@@ -60,7 +60,7 @@ Note: The currently logged in frontend user is saved as the creator of the appoi
 
 The appointment can then be edited again, by simply clicking on it, or moving it to a desired date.
 
-.. figure:: ../Images/datec_timeline_03_createdate.png
+.. figure:: ../Images/datec_timeline_03_createdate.jpg
 	:width: 900px
 	:alt: Backend view
 

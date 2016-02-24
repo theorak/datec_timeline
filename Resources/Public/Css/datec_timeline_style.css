@@ -11,6 +11,9 @@
 .tx-datec-timeline .fc-month-view .fc-body .fc-row {
 	min-height: 6em;
 }
+.tx-datec-timeline .fc-event {
+	cursor: default;
+}
 .tx-datec-timeline .typo3-messages{font-weight:600}
 .tx-datec-timeline .typo3-message.message-ok{color:green}
 .tx-datec-timeline .typo3-message.message-warning{color:inherit}

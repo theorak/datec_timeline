@@ -18,6 +18,7 @@ The extension frontend is based on fullcalendar functionality, combined with the
 * Appointments have title, description, creator or participants assigned from frontent users and a reminder date
 * Access to the plugins features can be controlled with access rights to the plugin content element
 * Frontend view is optimized for responsive design and testet with Bootstrap 3
+* Frontend users are used as creators and participants
 
 .. tip::
 
@@ -27,7 +28,7 @@ The extension frontend is based on fullcalendar functionality, combined with the
 
 	More information about fullcalendar: `<http://fullcalendar.io/>`_
 
-.. figure:: ../Images/datec_timeline_01_overview.png
+.. figure:: ../Images/datec_timeline_01_overview.jpg
 	:width: 900px
 	:alt: Datec Timeline Overview
 

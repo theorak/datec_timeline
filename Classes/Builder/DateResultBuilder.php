@@ -62,6 +62,8 @@ class DateResultBuilder implements \TYPO3\CMS\Core\SingletonInterface {
 		if ($date->getStop()) {
 			$dateResult->end = $date->getStop()->format('c');
 		}
+		$dateResult->allDay = $this->determineAllDay($date);
+		$dateResult->editable = $this->determineAccess($date);
 		$dateResult->content = $this->generateContent($date, $pluginConfig);	
 
 		$creator = $this->feUserRepository->findByUid($date->getCruserId());
@@ -74,6 +76,37 @@ class DateResultBuilder implements \TYPO3\CMS\Core\SingletonInterface {
 		}
 		
 		return $dateResult;
+	}
+	
+	/**
+	 * Checks if a frontend user is logged in and is the creator of this date, thus can edit this date.
+	 * 
+	 * @param Date $date
+	 * @return boolean
+	 */
+	private function determineAccess(Date $date) {
+		if(isset($GLOBALS['TSFE']->fe_user->user)) {
+			if ($GLOBALS['TSFE']->fe_user->user['uid'] == $date->getCruserId()) {	
+				return TRUE;
+			}
+		}	
+		return FALSE;
+	}
+	
+	/**
+	 * Checks if the current date lasts at leas one day and thus is a 'allDay' event.
+	 * 
+	 * @param Date $date
+	 * @return boolean
+	 */
+	private function determineAllDay(Date $date) {
+		$start = $date->getStart();
+		$stop = $date->getStop();
+		if ($stop) {
+			$interval = $start->diff($stop);
+			return $interval->format('%d') >= 1 ? TRUE : FALSE;
+		}
+		return FALSE;
 	}
 	
 	/**

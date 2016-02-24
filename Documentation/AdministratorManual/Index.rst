@@ -39,7 +39,7 @@ Insert Plugin
 
 1) Insert a content element, choose "Plugins" -> "General Plugin"
 
-.. figure:: ../Images/plugin_01.png
+.. figure:: ../Images/plugin_01.jpg
 	:width: 700px
 	:alt: insert plugin
 
@@ -48,7 +48,7 @@ Insert Plugin
 
 2) Choose the plugin "Datec Timeline".
 
-.. figure:: ../Images/plugin_02.png
+.. figure:: ../Images/plugin_02.jpg
 	:width: 700px
 	:alt: modules
 

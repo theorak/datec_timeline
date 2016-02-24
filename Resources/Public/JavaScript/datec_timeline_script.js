@@ -9,7 +9,7 @@ var DatecTimeline = {
 	currentLangCode: 'de',
 	currentDateTimeFormat: $('#tx-datec-timeline-dateTimeFormat').val(),
 	currentDateFormat: $('#tx-datec-timeline-dateFormat').val(),
-	showTimeline: function() {		
+	showTimeline: function() {
 		 $('#tx-datec-timeline-canvas').fullCalendar({
 			 header: {
 			 	left: 'prev,next today',
@@ -125,7 +125,7 @@ var DatecTimeline = {
             success: function(data, state, jqXHR) {     
             	if (typeof data.date !== "undefined") {
             		$('#tx-datec-timeline-canvas').fullCalendar('unselect');
-            		$('#tx-datec-timeline-canvas').fullCalendar('renderEvent', data.date, true);
+            		$('#tx-datec-timeline-canvas').fullCalendar('renderEvent', data.date, false);
             	} else {
             		$('#tx-datec-timeline-canvas').fullCalendar('unselect');
             	}  

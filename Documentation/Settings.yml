@@ -7,7 +7,7 @@ conf.py:
   copyright: 2015
   project: Datec Timeline
   version: 1.0
-  release: 1.1.0
+  release: 1.1.1
   latex_documents:
   - - Index
     - datec_timeline.tex
@@ -36,4 +36,7 @@ conf.py:
   - t3sphinx.ext.t3extras
   - t3sphinx.ext.t3tablerows
   - t3sphinx.ext.targets
+  html_theme_options:
+    github_repository: theorak/datec-timeline
+    github_branch: master
 ...

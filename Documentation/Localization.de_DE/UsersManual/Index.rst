@@ -25,7 +25,7 @@ Editors - Creator of Appointments
 
 Die Farbe der Termine basiert auf dem Ersteller des Termins. Alle Ersteller sind Frontend-Benutzer, daher kann die Farbe über die Option "Terminfarbe" in den Benutzerdaten angepasst werden.
 
-.. figure:: ../../Images/datec_timeline_04_creator.png
+.. figure:: ../../Images/datec_timeline_04_creator.jpg
 	:width: 900px
 	:alt: Backend view
 
@@ -56,7 +56,6 @@ Der Benutzer kann einen Termin im Frontend erstellen oder bearbeiten. Mit einem 
 - Teilnehmer: Eine Liste von anderen Frontend Benutzern die zu dem Termin eingeladen werden können.
 - Von/Bis: Datum und Zeitraum des Termin mit dem Datum ausgefüllt das ausgewählt wurde.
 - Errinnerung am: Es wird eine automatische Erinnerungsmail zu dem gewünschten Datum versendet, vorausgefüllt mit dem Start des Termins.
-
 Hinweis: Der Aktuell eingeloggte Frontend Benutzer wird als Terminersteller gespeichert.
 
 Der Termin kann wieder bearbeitet werden, indem man einfach auf den Termin klickt oder ihn per Drag&Drop zum gewünschten Datum bewegt.

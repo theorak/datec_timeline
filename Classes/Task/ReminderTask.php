@@ -25,7 +25,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	/**
 	 * $feUserRepository
 	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @var \Datec\DatecTimeline\Domain\Repository\FeUserRepository
 	 */
 	protected $feUserRepository;
 	
@@ -52,7 +52,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 */
 	private function injectFeUserRepository() {
 		$objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
-		$this->feUserRepository = $objectManager->get(\TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository::class);
+		$this->feUserRepository = $objectManager->get(\Datec\DatecTimeline\Domain\Repository\FeUserRepository::class);
 	}
 	
 	/**
@@ -105,7 +105,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$this->injectDateRepository();
 		$this->injectFeUserRepository();
 		$this->injectMailService();
-		xdebug_break();
+		
 		$dates = $this->dateRepository->findUpcoming(TRUE);		
 		if (!$dates) { // db error
 			return FALSE;
