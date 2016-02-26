@@ -239,7 +239,7 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			// set all Data from form
 			$date->setTitle($_POST['tx_datectimeline_timeline']['date']['title']);
 			$date->setDescription($_POST['tx_datectimeline_timeline']['date']['description']);
-			xdebug_break();
+			
 			// TODO: format the date properly in the form
 			$date->setStart($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['start']));			
 			if (isset($_POST['tx_datectimeline_timeline']['date']['stop']) && !empty($_POST['tx_datectimeline_timeline']['date']['stop'])) {
