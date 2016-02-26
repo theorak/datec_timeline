@@ -13,6 +13,14 @@
 }
 .tx-datec-timeline .fc-event {
 	cursor: default;
+	-webkit-transition: all .6s ease-in-out;
+    -moz-transition: all .6s ease-in-out;
+    -o-transition: all .6s ease-in-out;
+    -ms-transition: all .6s ease-in-out;
+    transition: all .6s ease-in-out;
+}
+.tx-datec-timeline .fc-event:hover {
+	z-index: 999 !important;
 }
 .tx-datec-timeline .typo3-messages{font-weight:600}
 .tx-datec-timeline .typo3-message.message-ok{color:green}
@@ -26,6 +34,15 @@
 	cursor: pointer;
 	color: #fff;
 }
+#tx-datec-timeline-filter > div {
+	float: left;
+}
+#tx-datec-timeline-filter:after,
+#tx-datec-timeline-filter:before {
+	content: " ";
+	clear: both;
+	display: table-row;
+}
 .tx-datec-timeline-creator[data-filterstate="inactive"] {
 	text-decoration: line-through;
 	background-color: gray !important;
@@ -35,6 +52,23 @@
 .datepicker.form-control[readonly] {
     cursor: default;
     background-color: #fff;
+}
+.tx-datec-timeline-refresh {
+  	display: block;
+	text-indent: -9999px;
+	width: 30px;
+	height: 25px;
+	background: url('../Icons/refresh.svg');
+	background-size: 18px 18px;
+	padding: 5px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	margin-right: 5px;
+	background-color: #f5f5f5;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	cursor: pointer;
 }
 /* for small screens: only day view */
 @media (max-width:991px) {

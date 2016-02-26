@@ -339,9 +339,10 @@ $().ready(function() {
 				$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
 			});
 		}
-		// refresh the calendar every 20 seconds
-		setInterval(function() {
-			$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
-		}, 30000);		
+		if ($('.tx-datec-timeline-refresh').length) { 
+			$('.tx-datec-timeline-refresh').click(function() {
+				$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
+			});
+		}
 	}
 });
