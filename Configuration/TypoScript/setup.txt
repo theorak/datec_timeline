@@ -61,12 +61,14 @@ plugin.tx_datectimeline {
 	}
     settings {
         storagePid = {$plugin.tx_datectimeline.persistence.storagePid}
-        reminderMailAfterCreation = 1
-        reminderMailAfterEdit = 1
-        langOptions = 1
+	    langOptions = 1
         mail {
         	internMailFrom = timeline@no-reply.com
         	internMailFromName = Datec Timeline
+        	translang = de
+	        onCreate = 1
+	        onUpdate = 1
+	        onDelete = 1
         }
         display {
         	dateTimeFormat = d.m.Y H:i

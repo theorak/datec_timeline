@@ -155,8 +155,9 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				}		
 				
 				$subject = LocalizationUtility::translate('tx_datectimeline.mail.reminderSubject', 'datec_timeline');
-				$msg = $this->mailService->generateReminderMail($date, $recipients, $this->pluginConfiguration);
-				$this->mailService->sendBccMails($subject, $msg, $recipients, $this->pluginConfiguration['settings']);
+				$this->mailService->setRecpients($date, $recipients);
+				$msg = $this->mailService->generateMail($date, $this->pluginConfiguration, 'ReminderMail');
+				$this->mailService->sendBccMails($subject, $msg, $this->pluginConfiguration['settings']);
 			}			
 		}		
 		

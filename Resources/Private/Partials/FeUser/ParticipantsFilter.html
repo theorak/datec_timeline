@@ -1,0 +1,15 @@
+<p>
+  <strong><f:translate key="tx_datectimeline_domain_model_date.participants" />: </strong>
+  <f:for each="{participants}" as="participant">
+  	<span class="tx-datec-timeline-participant" data-participantId="{participant.uid}" data-filterState="active" style="{f:if(condition:participant.dateColor,then:'background-color:{participant.dateColor}; border:1px solid {participant.dateColor};',else:'')}">
+	 	<f:if condition="{participant.lastName}">
+			<f:then>
+				{participant.lastName}<f:if condition="{participant.firstName}">, {participant.firstName}</f:if>
+			</f:then>
+			<f:else>
+				{participant.username}
+			</f:else>
+		</f:if>
+  	</span>
+  </f:for>
+</p>

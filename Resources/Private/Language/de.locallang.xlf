@@ -81,6 +81,24 @@
 			<trans-unit id="tx_datectimeline.mail.reminderMsg">
 				<target>Sie haben einen bevorstehenden Termin und sind entweder Ersteller oder eingeladener Teilnehmer.</target>
 			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.createSubject">
+				<target>Datec Timeline - Termin erstellt</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.createMsg">
+				<target>Der folgende Termin wurde erstellt und Sie sind entweder Ersteller oder eingeladener Teilnehmer.</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.updateSubject">
+				<target>Datec Timeline - Termin aktualisiert</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.updateMsg">
+				<target>Der folgende Termin wurde aktualisiert und Sie sind entweder Ersteller oder eingeladener Teilnehmer.</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.deleteSubject">
+				<target>Datec Timeline - Termin entfernt</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.deleteMsg">
+				<target>Der folgende Termin wurde entfernt und Sie sind entweder Ersteller oder eingeladener Teilnehmer.</target>
+			</trans-unit>
 			
 		</body>
 	</file>

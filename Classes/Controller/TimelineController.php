@@ -103,11 +103,11 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @return void
 	 */
 	public function showTimelineAction() {
-		$creators = $this->feUserRepository->findDateCreatorsByRelations();
-		if ($creators) {
-			$creators = $creators->toArray();
-			if (!empty($creators)) {
-				$this->view->assign('creators', $creators);
+		$users = $this->feUserRepository->findUsersByRelatedDates();
+		if ($users) {
+			$users = $users->toArray();
+			if (!empty($users)) {
+				$this->view->assign('users', $users);
 			}
 		}
 		
@@ -127,7 +127,10 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 				if ($this->request->hasArgument('creatorIds')) {
 					$creatorIds = $this->request->getArgument('creatorIds');
 				}
-				$dates = $this->dateRepository->findByFilterCriteria($this->request->getArgument('start'), $this->request->getArgument('stop'), $creatorIds);
+				if ($this->request->hasArgument('participantIds')) {
+					$participantIds = $this->request->getArgument('participantIds');
+				}
+				$dates = $this->dateRepository->findByFilterCriteria($this->request->getArgument('start'), $this->request->getArgument('stop'), $creatorIds, $participantIds);
 			} else {
 				$dates = $this->dateRepository->findAll();		
 			}
@@ -177,15 +180,17 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 				$feUsers = $feUsers->toArray();
 				if (!empty($feUsers)) {
 					foreach($feUsers as $feUser) {
-						if ($feUser->getLastname() !== '') {
-							$feUserName = $feUser->getLastname();
-							if ($feUser->getFirstname() !== '') {
-								$feUserName .= ', '.$feUser->getFirstname();
+						if ($feUser->getUid() !== $this->feUser['uid']) { // exclude current user, he is the creator
+							if ($feUser->getLastname() !== '') {
+								$feUserName = $feUser->getLastname();
+								if ($feUser->getFirstname() !== '') {
+									$feUserName .= ', '.$feUser->getFirstname();
+								}
+							}  else {
+								$feUserName = $feUser->getUsername();
 							}
-						}  else {
-							$feUserName = $feUser->getUsername();
+							$participants[$feUser->getUid()] = $feUserName;
 						}
-						$participants[$feUser->getUid()] = $feUserName;
 					}
 				}
 			}
@@ -222,20 +227,7 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			$date->setPid($this->settings['storagePid']);
 			$date->setCrdate($now);
 			$date->setCruserId($this->feUser['uid']);
-			
-			$creator = $this->feUserRepository->findByUid($date->getCruserId());
-			if ($this->settings['reminderMailAfterCreation']) {
-				if ($creator->getLastname() !== '') {
-					$cruserName = $creator->getLastname();
-					if ($creator->getFirstname() !== '') {
-						$cruserName .= ', '.$creator->getFirstname();
-					}
-				}  else {
-					$cruserName = $creator->getUsername();
-				}
-				$recipients[$creator->getEmail()] = $cruserName;
-			}
-			
+						
 			// set all Data from form
 			$date->setTitle($_POST['tx_datectimeline_timeline']['date']['title']);
 			$date->setDescription($_POST['tx_datectimeline_timeline']['date']['description']);
@@ -254,17 +246,6 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 					$feUser = $this->feUserRepository->findByUid($feUserId);
 					if ($feUser) {
 						$date->addParticipant($feUser);
-						if ($this->settings['reminderMailAfterCreation']) {
-							if ($feUser->getLastname() !== '') {
-								$participantName = $feUser->getLastname();
-								if ($feUser->getFirstname() !== '') {
-									$participantName .= ', '.$feUser->getFirstname();
-								}
-							} else {
-								$participantName = $feUser->getUsername();
-							}
-							$recipients[$feUser->getEmail()] = $participantName;
-						}
 					}
 				}
 			}
@@ -272,10 +253,11 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			$this->dateRepository->add($date);
 			$this->persistenceManager->persistAll(); // we need the uid right after
 			
-			if ($this->settings['reminderMailAfterCreation']) {
+			if ($this->settings['mail']['onCreate'] || $this->settings['reminderMailAfterCreation']) { // @deprecated: reminderMailAfterCreation removed in future version
 				$subject = LocalizationUtility::translate('tx_datectimeline.mail.reminderSubject', 'datec_timeline');
-				$msg = $this->mailService->generateReminderMail($date, $recipients, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK));
-				$this->mailService->sendBccMails($subject, $msg, $recipients, $this->settings);
+				$this->mailService->setRecpients($date);
+				$msg = $this->mailService->generateMail($date, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK), 'CreateMail');
+				$this->mailService->sendBccMails($subject, $msg, $this->settings);
 			}
 			
 			$dateResultBuilder = $this->objectManager->get('Datec\\DatecTimeline\\Builder\\DateResultBuilder');
@@ -319,15 +301,17 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 				$feUsers = $feUsers->toArray();
 				if (!empty($feUsers)) {
 					foreach($feUsers as $feUser) {
-						if ($feUser->getLastname() !== '') {
-							$feUserName = $feUser->getLastname();
-							if ($feUser->getFirstname() !== '') {
-								$feUserName .= ', '.$feUser->getFirstname();
+						if ($feUser->getUid() !== $this->feUser['uid']) {
+							if ($feUser->getLastname() !== '') {
+								$feUserName = $feUser->getLastname();
+								if ($feUser->getFirstname() !== '') {
+									$feUserName .= ', '.$feUser->getFirstname();
+								}
+							}  else {
+								$feUserName = $feUser->getUsername();
 							}
-						}  else {
-							$feUserName = $feUser->getUsername();
+							$participants[$feUser->getUid()] = $feUserName;
 						}
-						$participants[$feUser->getUid()] = $feUserName;
 					}
 				}
 			}
@@ -374,19 +358,6 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 				if (isset($_POST['tx_datectimeline_timeline']['date']['reminderStart'])) {
 					$date->setReminderStart($this->getDateTimeForm($_POST['tx_datectimeline_timeline']['date']['reminderStart']));
 				}
-				
-				if ($this->settings['reminderMailAfterEdit']) {
-					$creator = $this->feUserRepository->findByUid($date->getCruserId());
-					if ($creator->getLastname() !== '') {
-						$cruserName = $creator->getLastname();
-						if ($creator->getFirstname() !== '') {
-							$cruserName .= ', '.$creator->getFirstname();
-						}
-					}  else {
-						$cruserName = $creator->getUsername();
-					}
-					$recipients[$creator->getEmail()] = $cruserName;
-				}
 
 				if (isset($_POST['tx_datectimeline_timeline']['date']['participants']) && !empty($_POST['tx_datectimeline_timeline']['date']['participants'])) {
 					foreach ($_POST['tx_datectimeline_timeline']['date']['participants'] as $feUserId) {
@@ -396,25 +367,12 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 						}
 					}
 				}
-				
-				if (count($date->getParticipants()) > 0 && $this->settings['reminderMailAfterEdit']) {
-					foreach ($date->getParticipants() as $feUser) {
-						if ($feUser->getLastname() !== '') {
-							$participantName = $feUser->getLastname();
-							if ($feUser->getFirstname() !== '') {
-								$participantName .= ', '.$feUser->getFirstname();
-							}
-						} else {
-							$participantName = $feUser->getUsername();
-						}
-						$recipients[$feUser->getEmail()] = $participantName;
-					}					
-				}
 
-				if ($this->settings['reminderMailAfterEdit']) {					
+				if ($this->settings['mail']['onUpdate'] || $this->settings['reminderMailAfterEdit']) { // @deprecated: reminderMailAfterEdit removed in future version				
 					$subject = LocalizationUtility::translate('tx_datectimeline.mail.reminderSubject', 'datec_timeline');
-					$msg = $this->mailService->generateReminderMail($date, $recipients, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK));
-					$this->mailService->sendBccMails($subject, $msg, $recipients, $this->settings);
+					$this->mailService->setRecpients($date);
+					$msg = $this->mailService->generateMail($date, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK), 'UpdateMail');
+					$this->mailService->sendBccMails($subject, $msg, $this->settings);
 				}
 				
 				$this->dateRepository->update($date);
@@ -448,9 +406,7 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 */
 	public function showDateAction($dateId) {
 		$access = $this->checkAccess();
-		if ($access) {
-			$participants = array();
-			
+		if ($access) {			
 			$date = $this->dateRepository->findByUid($dateId);
 		
 			$creator = $this->feUserRepository->findByUid($date->getCruserId());
@@ -472,6 +428,14 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		$access = $this->checkAccess();
 		if ($access) {
 			$date = $this->dateRepository->findByUid($_POST['tx_datectimeline_timeline']['dateId']);
+			
+			if ($this->settings['mail']['onDelete']) {
+				$subject = LocalizationUtility::translate('tx_datectimeline.mail.reminderSubject', 'datec_timeline');
+				$this->mailService->setRecpients($date);
+				$msg = $this->mailService->generateMail($date, $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK), 'DeleteMail');
+				$this->mailService->sendBccMails($subject, $msg, $this->settings);
+			}
+			
 			$this->dateRepository->remove($date);
 			
 			$datesResult = new \stdClass();

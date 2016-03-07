@@ -55,10 +55,16 @@ Generelle Einstellungen
 	view.layoutRootPaths                               array           Konstante, Pfad zu den Layout Dateien                                           EXT:datec_timeline/Resources/Private/Layouts/
 	persistence.storagePid                             int             Systemordner für die Termine
 	settings.storagePid                                int             Systemordner für die Termine
-	settings.mail.internMailFrom                       string          E-mail Adresse für die automatische Email Benachrichtigung [FROM]               timeline@no-reply.com
-	settings.mail.internMailFromName                   string          Anzeigename für die automatische Email Benachrichtigung [FROM-NAME].            Datec Timeline
-	settings.display.comments.dateFormat               string          Datums Format nur für die Bemerkungen                                           d.m.Y - H:
-	settings.reminderMailAfterCreation                 string          Die erste Email nach der Erstellung eines Termins                               true
-	settings.reminderMailAfterEdit                     string          Eine Email nach jeder Enpassung eines Termins                                   true
+	settings.mail.internMailFrom                       string          E-mail Adresse für die automatische E-Mail Benachrichtigung [FROM]              timeline@no-reply.com
+	settings.mail.internMailFromName                   string          Anzeigename für die automatische E-Mail Benachrichtigung [FROM-NAME]            Datec Timeline
+	settings.mail.translang                            string          Sprache für E-Mails, besonders Erinnerungs E-Mails aus dem BE                   de
+	settings.mail.onCreate                             string          E-Mail versenden nach der Erstellung eines Termins                              true
+	settings.mail.onUpdate                             string          E-Mail versenden nach der Enpassung eines Termins                               true
+	settings.mail.onDelete                             string          E-Mail versenden nach der Löschung eines Termins                                true
+	settings.display.comments.dateFormat               string          Datums Format nur für die Bemerkungen                                           d.m.Y - H:i
 	settings.langOptions                               string          Sprachen ausblenden / anzeigen                                                  true
 	================================================   =============   ==============================================================================  ============
+
+
+.. tip::
+	Die Optionen settings.reminderMailAfterCreation und settings.reminderMailAfterCreation werden in zukünftigen Versionen entfernt.

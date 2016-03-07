@@ -13,6 +13,19 @@ use Datec\DatecTimeline\Domain\Model\Date;
 class MailService implements \TYPO3\CMS\Core\SingletonInterface  {
 	
 	/**
+	 * @var array
+	 */
+	protected $recipients;
+
+	/**
+	 * $feUserRepository
+	 *
+	 * @var \Datec\DatecTimeline\Domain\Repository\FeUserRepository
+	 * @inject
+	 */
+	protected $feUserRepository;
+	
+	/**
 	 * Sends mails with message to all recipients in bcc.
 	 * 
 	 * @param string $subject Subject of message
@@ -22,18 +35,18 @@ class MailService implements \TYPO3\CMS\Core\SingletonInterface  {
 	 * 
 	 * @return boolean Message was send
 	 */
-	public function sendBccMails($subject, $html, $recipients, $settings, $plain = '') {
+	public function sendBccMails($subject, $html, $settings, $plain = '') {
 		$message = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Mail\MailMessage::class);
 
-		$value = reset($recipients);
-		$key = key($recipients);
+		$value = reset($this->recipients);
+		$key = key($this->recipients);
 		$firstRecipient = array($key => $value);
-		unset($recipients[$key]);
+		unset($this->recipients[$key]);
 		if (is_array($firstRecipient)) {		
 			$message->setFrom(array($settings['mail']['internMailFrom'] => $settings['mail']['internMailFromName']));
 			$message->setTo($firstRecipient);
-			if (!empty($recipients)) {
-				$message->setBcc($recipients);
+			if (!empty($this->recipients)) {
+				$message->setBcc($this->recipients);
 			}
 			if ($settings['mail']['sendSupportInternMail'] == 1) {
 				$message->setBcc(array($settings['mail']['supportInternMailTo'] => ''));
@@ -57,11 +70,12 @@ class MailService implements \TYPO3\CMS\Core\SingletonInterface  {
 	 * @param Date $date
 	 * @param array $recipients
 	 * @param array $pluginConfig
+	 * @param string $mailName
 	 * @return string
 	 */
-	public function generateReminderMail($date, $recipients, $pluginConfig) {	
+	public function generateMail($date, $pluginConfig, $mailName) {	
 		$emailView = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
-		$templateName = 'Email/ReminderMail.html';
+		$templateName = 'Email/'.$mailName.'.html';
 		$templateRootPath = GeneralUtility::getFileAbsFileName($pluginConfig['view']['templateRootPath']);
 		$templatePathAndFilename = $templateRootPath.$templateName;
 		
@@ -69,12 +83,55 @@ class MailService implements \TYPO3\CMS\Core\SingletonInterface  {
 		$emailView->getRequest()->setControllerExtensionName('DatecTimeline');
 		
 		$emailView->assign('date', $date);
-		$emailView->assign('recipients', $recipients);
+		$emailView->assign('recipients', $this->recipients);
 		$emailView->assign('settings', $pluginConfig['settings']);
-	
+
+		// set language by mail setting
+		$GLOBALS['LANG'] = GeneralUtility::makeInstance('TYPO3\\CMS\\Lang\\LanguageService');
+		$GLOBALS['LANG']->init($pluginConfig['settings']['mail']['translang']);
+		
 		$emailBody = $emailView->render();
 	
 		return $emailBody;
+	}
+	
+	/**
+	 * Sets all recipients for date, creator first plus participants.
+	 * 
+	 * @param \Datec\DatecTimeline\Domain\Model\Date $date
+	 * @param array $recipients
+	 */
+	public function setRecpients($date, $recipients = NULL) {
+		if (!isset($recipients) && empty($recipients)) {
+			$recipients = array();
+			
+			$creator = $this->feUserRepository->findByUid($date->getCruserId());
+			if ($creator->getLastname() !== '') {
+				$cruserName = $creator->getLastname();
+				if ($creator->getFirstname() !== '') {
+					$cruserName .= ', '.$creator->getFirstname();
+				}
+			}  else {
+				$cruserName = $creator->getUsername();
+			}
+			$recipients[$creator->getEmail()] = $cruserName;
+			
+			if (count($date->getParticipants()) > 0) {
+				foreach ($date->getParticipants() as $feUser) {
+					if ($feUser->getLastname() !== '') {
+						$participantName = $feUser->getLastname();
+						if ($feUser->getFirstname() !== '') {
+							$participantName .= ', '.$feUser->getFirstname();
+						}
+					} else {
+						$participantName = $feUser->getUsername();
+					}
+					$recipients[$feUser->getEmail()] = $participantName;
+				}
+			}
+		}
+		
+		$this->recipients = $recipients;
 	}
 	
 }

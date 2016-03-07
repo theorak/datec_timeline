@@ -36,7 +36,7 @@ Benutzer - Ansicht
 
 Es wird standardmäßig die fullcalendar "Wochenangenda"-Ansicht angezeigt. Diese Ansicht ist optimal für das planen von Terminen mit zeitlichen Informationen.
 Über die Schaltflächen auf der rechten Seite kann der Benutzer zwischen der Monats, Wochen und Tag Ansicht wechseln. Die Tag Ansicht ist die Standard Ansicht für Mobile geäte oder kleinere Bildschirme.
-Ebenfalls oberhalb der Timeline finden Sie die Ersteller von Terminen, klicken Sie diese an um Termine dieser Ersteller auszuschließen.
+Ebenfalls oberhalb der Timeline finden Sie die Ersteller und Teilnehmer von Terminen, klicken Sie diese an um Termine nach diesen zu filtern.
 Diese Anzeige wird alle 30 Sekunden aktualisiert.
 
 .. figure:: ../../Images/datec_timeline_02_views.png

@@ -5,17 +5,18 @@
 <input type="hidden" id="tx-datec-timeline-dateFormat" value="{settings.display.dateFormat}" />
 <input id="tx-datec-timeline-pageId" type="hidden" name="tx_datectimeline_timeline[pageId]" value="{pageId}" />
 <div id="tx-datec-timeline-filter">
-	<div class="tx-datec-timeline-refresh"></div>
-	<f:if condition="{creators}">
-		<f:render partial="FeUser/CreatorsLegend" arguments="{settings:settings, creators:creators}" />
+	<f:if condition="{users}">
+		<f:render partial="FeUser/CreatorsLegend" arguments="{settings:settings, creators:users}" />
+		<f:render partial="FeUser/ParticipantsFilter" arguments="{settings:settings, participants:users}" />
 	</f:if>
 </div>
+<span class="tx-datec-timeline-refresh"></span>
+<f:if condition="{settings.langOptions}">
+	<span>Language: <select id="tx-datec-timeline-lang-selector"></select></span>
+</f:if>
 <div id="tx-datec-timeline-info">
 	<f:flashMessages renderMode="div" />
 </div>
-<f:if condition="{settings.langOptions}">
-	<div>Language: <select id="tx-datec-timeline-lang-selector"></select></div>
-</f:if>
 <div id="tx-datec-timeline-canvas"></div>
 <div id="tx-datec-timeline-form-canvas" style="display:none;"></div>
 <div id="tx-datec-timeline-show-canvas" style="display:none;"></div>

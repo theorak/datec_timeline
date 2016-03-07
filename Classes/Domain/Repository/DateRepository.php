@@ -39,15 +39,32 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param int $start timestamp
 	 * @param int $stop timestamp
 	 * @param array $creatorIds (optional) uid list of creators
+	 * @param array $creatorIds (optional) uid list of participants
 	 */
-	public function findByFilterCriteria($start, $stop, $creatorIds = NULL) {
+	public function findByFilterCriteria($start, $stop, $creatorIds = NULL, $participantIds = NULL) {
 		$constraints = array();
+		$dateConstraints = array();
+		$participantConstraints = array();
 		$query = $this->createQuery();
-	
-		$constraints[] = $query->greaterThanOrEqual('start', $start);
-		$constraints[] = $query->logicalOr($query->lessThanOrEqual('stop', $stop), $query->equals('stop', 0));
+		
+		$dateConstraints[] = $query->logicalAnd($query->greaterThanOrEqual('start', $start), $query->lessThanOrEqual('start', $stop));
+		$dateConstraints[] = $query->logicalAnd($query->lessThanOrEqual('start', $start), $query->greaterThanOrEqual('stop', $stop));
+		$dateConstraints[] = $query->logicalAnd($query->greaterThanOrEqual('stop', $start), $query->lessThanOrEqual('stop', $stop));
+		$dateConstraints[] = $query->logicalAnd($query->greaterThanOrEqual('start', $start), $query->lessThanOrEqual('stop', $stop));		
+		$constraints[] = $query->logicalOR($dateConstraints);
+		
 		if (isset($creatorIds) && !empty($creatorIds)) {
 			$constraints[] = $query->in('cruser_id', $creatorIds);
+		}
+		
+		if (isset($participantIds) && !empty($participantIds)) {
+			foreach ($participantIds as $participantId) {
+				$participantConstraints[] = $query->contains('participants', $participantId);
+			}
+			$participantConstraints[] = $query->equals('participants', 0);
+			$constraints[] = $query->logicalOR($participantConstraints);
+		} else {
+			$constraints[] = $query->equals('participants', 0);
 		}
 	
 		return $query->matching($query->logicalAnd($query->logicalAnd($constraints)))->execute();

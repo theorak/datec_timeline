@@ -37,7 +37,7 @@ Users - Views
 
 The default view is fullcalendar's "Agenda Week" view. This view is optimal for appointments with time information.
 The controls on the right also let the user switch between monthly and per day view, the latter is forced as default for mobilde devices or small screens.
-Also above the timeline you'll find the list of creators of appointments, click them to filter the viewed appointments.
+Also above the timeline you'll find the list of creators and participants of appointments, click them to filter the viewed appointments.
 This view will refresh every 30 seconds.
 
 .. figure:: ../Images/datec_timeline_02_views.jpg

@@ -22,6 +22,7 @@ var DatecTimeline = {
 			 selectable: true,
 			 selectHelper: true,
 			 defaultView:  $(window).width() <= 991 ? 'agendaDay' : 'agendaWeek', // for small screens: only day view
+			 scroolTime: '00:00:00',
 			 select: DatecTimeline.newDateForm,
 			 events: DatecTimeline.loadDates,
 			 eventClick: DatecTimeline.editDateForm,
@@ -44,6 +45,12 @@ var DatecTimeline = {
 			 var creators = $('.tx-datec-timeline-creator[data-filterstate="active"]');
 			 for (var i=0; i < creators.length; i++) {
 				data['tx_datectimeline_timeline[creatorIds]['+i+']'] = $(creators[i]).data('creatorid');
+			 }
+		}
+		if ($('.tx-datec-timeline-participant').length) { 
+			 var participants = $('.tx-datec-timeline-participant[data-filterstate="active"]');
+			 for (var i=0; i < participants.length; i++) {
+				data['tx_datectimeline_timeline[participantIds]['+i+']'] = $(participants[i]).data('participantid');
 			 }
 		}
 		$.ajax({
@@ -98,7 +105,9 @@ var DatecTimeline = {
     			$('.datetimepicker').datetimepicker({
     				dayOfWeekStart: DatecTimeline.currentLangCode == "de" ? 1 : 0,
     				format: DatecTimeline.currentDateTimeFormat,
-    				onChangeDateTime: DatecTimeline.saveDateTime
+    				onChangeDateTime: DatecTimeline.saveDateTime,
+    				step: 15,
+    				minDate: 0
     			});
     			$('.datepicker').datetimepicker({
     				timepicker:false,
@@ -150,7 +159,7 @@ var DatecTimeline = {
         	},
     		success: function(data, state, jqXHR) {
         		// open form in jQuery-ui modal dialog
-    			if (data.search("form") === -1) { // is not the form
+    			if (data.search("tx-datec-timeline-dateForm") === -1) { // is not the form
     				$("#tx-datec-timeline-show-canvas").html(data).dialog({modal:true});
     			} else {
     				$("#tx-datec-timeline-form-canvas").html(data).dialog({
@@ -176,6 +185,7 @@ var DatecTimeline = {
         				dayOfWeekStart: DatecTimeline.currentLangCode == "de" ? 1 : 0,
         				format:DatecTimeline.currentDateTimeFormat,
         				onChangeDateTime: DatecTimeline.saveDateTime,
+        				step: 15,
         				minDate: 0										// defaults to today minimum
         			});
         			$('.datepicker').datetimepicker({
@@ -339,10 +349,26 @@ $().ready(function() {
 				$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
 			});
 		}
+		if ($('.tx-datec-timeline-participant').length) { 
+			$('.tx-datec-timeline-participant').click(function() {
+				if ($(this).attr('data-filterstate') == 'active') {
+					$(this).attr('data-filterstate', 'inactive');
+				} else {
+					$(this).attr('data-filterstate', 'active');
+				}
+				$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
+			});
+		}
 		if ($('.tx-datec-timeline-refresh').length) { 
 			$('.tx-datec-timeline-refresh').click(function() {
 				$('#tx-datec-timeline-canvas').fullCalendar('refetchEvents');
 			});
 		}
+		window.addEventListener("hashchange", function(e) {
+			  if ($('.ui-dialog:visible').length) {
+				  e.preventDefault();
+				  $("#tx-datec-timeline-form-canvas").dialog('close');
+			  }
+		});
 	}
 });

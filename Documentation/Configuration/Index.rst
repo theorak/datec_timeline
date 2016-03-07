@@ -37,6 +37,8 @@ Upon installation, please add the static extension template 'Datec Timeline' to 
 
 	# Valid e-mail address to dispatch automatic mails from
 	plugin.tx_datectimeline.settings.mail.internMailFrom = timeline@no-reply.com
+	# language of e-mails
+	plugin.tx_datectimeline.settings.mail.translang = de
 
 
 General configuration
@@ -56,8 +58,14 @@ plugin.tx_datectimeline.
 	settings.storagePid                                 int             System folder for appointments.
 	settings.mail.internMailFrom                        string          E-mail address for automatic notification Mails [FROM].                         timeline@no-reply.com
 	settings.mail.internMailFromName                    string          Name to display for automatic notification Mails [FROM-NAME].                   Datec Timeline
-	settings.display.comments.dateFormat                string          Like 'settings.display.dateFormat' for comments only.                           d.m.Y - H:
-	settings.reminderMailAfterCreation                  string          Send out first reminder E-Mail after creation of appointment.                   true
-	settings.reminderMailAfterEdit                      string          Send out a reminder E-Mail after each edit of appointment.                      true
+	settings.mail.translang                             string          Language for e-mails, especially for reminder mails from BE                     de
+	settings.mail.onCreate                              string          E-Mail after creation of appointment.                                           true
+	settings.mail.onUpdate                              string          E-Mail after each edit of appointment.                                          true
+	settings.mail.onDelete                              string          E-Mail after deletion of appointment.                                           tru
+	settings.display.comments.dateFormat                string          Like 'settings.display.dateFormat' for comments only.                           d.m.Y - H:ie
 	settings.langOptions                                string          Hides/shows language options.                                                   true
 	================================================    =============   ==============================================================================  ===========
+
+
+.. tip::
+	The options settings.reminderMailAfterCreation and settings.reminderMailAfterCreation will be removed in future versions.

@@ -81,6 +81,24 @@
 			<trans-unit id="tx_datectimeline.mail.reminderMsg">
 				<source>You have a upcoming date and are either creator or invited partipant.</source>
 			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.createSubject">
+				<source>Datec Timeline - Date Created</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.createMsg">
+				<source>The following date was created and you are either creator or invited partipant.</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.updateSubject">
+				<source>Datec Timeline - Date Updated</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.updateMsg">
+				<source>The following date was updated and you are either creator or invited partipant.</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.deleteSubject">
+				<source>Datec Timeline - Date Deleted</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.mail.deleteMsg">
+				<source>The following date was deleted and you are either creator or invited partipant.</source>
+			</trans-unit>
 			
 		</body>
 	</file>

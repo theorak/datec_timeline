@@ -36,11 +36,11 @@ class FeUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUser
 	protected $databaseConnection;
 	
 	/**
-	 * Searches for all frontend users, who have created a date by database relation.
+	 * Searches for all frontend users, who have created, or participated in, a date by database relation.
 	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|boolean
 	 */
-	public function findDateCreatorsByRelations() {		
+	public function findUsersByRelatedDates() {		
 		// load all feUser IDs from association with date
 		$uids = array();
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
