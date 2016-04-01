@@ -102,12 +102,20 @@ class TimelineController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 *
 	 * @return void
 	 */
-	public function showTimelineAction() {
-		$users = $this->feUserRepository->findUsersByRelatedDates();
-		if ($users) {
-			$users = $users->toArray();
-			if (!empty($users)) {
-				$this->view->assign('users', $users);
+	public function showTimelineAction() {		
+		$creators = $this->feUserRepository->findCreatorsOfDates();
+		if ($creators) {
+			$creators = $creators->toArray();
+			if (!empty($creators)) {
+				$this->view->assign('creators', $creators);
+			}
+		}
+		
+		$participants = $this->feUserRepository->findParticipantsByRelatedDates();
+		if ($participants) {
+			$participants = $participants->toArray();
+			if (!empty($participants)) {
+				$this->view->assign('participants', $participants);
 			}
 		}
 		

@@ -68,6 +68,18 @@
 			<trans-unit id="tx_datectimeline.tasks.reminderTask.description">
 				<source>Sends reminder emails for creators and participants of Datec Timeline planned dates.</source>
 			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.cleanupTask.name">
+				<source>Datec Timeline - Cleanup Dates Task</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.cleanupTask.description">
+				<source>Delete older date entries from the database to cleanup. CAUTION: this tasj removes definitely</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.fields.numberOfDays">
+				<source>Number of days. Dates older (crdate) than X are deleted.</source>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.fields.numberOfDays.invalid">
+				<source>Not a valid Number.</source>
+			</trans-unit>
 			
 			<trans-unit id="tx_datectimeline.mail.dearSirOrMadam">
 				<source>Dear Sir or Madam,</source>

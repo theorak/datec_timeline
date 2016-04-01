@@ -4,99 +4,150 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_datectimeline_domain_model_date">
+				<source>Date</source>
 				<target>Termin</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date_plural">
+				<source>Dates</source>
 				<target>Termine</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.title">
+				<source>Title</source>
 				<target>Titel</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.description">
+				<source>Description</source>
 				<target>Beschreibung</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.cruser">
+				<source>Creator</source>
 				<target>Ersteller</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.cruser_plural">
+				<source>Creators</source>
 				<target>Ersteller</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.start">
+				<source>Start</source>
 				<target>Von</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.stop">
+				<source>Stop</source>
 				<target>Bis</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline_domain_model_date.reminderStart">
+				<source>Reminder Start</source>
 				<target>Erinnerung ab</target>
 			</trans-unit>				
 			<trans-unit id="tx_datectimeline_domain_model_date.participants">
+				<source>Participants</source>
 				<target>Teilnehmer</target>
 			</trans-unit>	
-			
+
 			<trans-unit id="fe_users.dateColor">
+				<source>Datec Timeline - Date Color</source>
 				<target>Datec Timeline - Terminfarbe</target>
 			</trans-unit>
-
+			
 			<trans-unit id="tce.colorPicker">
+				<source>Choose color</source>
 				<target>Farbe auswählen</target>
-			</trans-unit>	
+			</trans-unit>
+
+			<trans-unit id="tx_datectimeline.labels.noPaticipants">
+				<source>No Participants</source>
+				<target>Keine Teilnehmer</target>
+			</trans-unit>			
 			
 			<trans-unit id="tx_datectimeline.errors.dbError">
+				<source>Error accessing the database!</source>
 				<target>Fehler beim Zugriff auf die Datenbank!</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.errors.noDates">
+				<source>No dates found.</source>
 				<target>Keine Termine gefunden.</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.errors.noAccess">
+				<source>You don't have permission for this action.</source>
 				<target>Sie haben nicht genügend Rechte für diese Aktion.</target>
 			</trans-unit>
 			
 			<trans-unit id="tx_datectimeline.messages.dateCreated">
+				<source>Date created.</source>
 				<target>Termin erstellt.</target>
 			</trans-unit>	
 			<trans-unit id="tx_datectimeline.messages.dateSaved">
+				<source>Date saved.</source>
 				<target>Termin gespeichert.</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.messages.dateDeleted">
+				<source>Date deleted.</source>
 				<target>Termin entfernt.</target>
-			</trans-unit>
+			</trans-unit>		
 			
 			<trans-unit id="tx_datectimeline.tasks.reminderTask.name">
+				<source>Datec Timeline - Reminder Emails Task</source>
 				<target>Datec Timeline - Erinnerungs-Emails Task</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.tasks.reminderTask.description">
+				<source>Sends reminder emails for creators and participants of Datec Timeline planned dates.</source>
 				<target>Versendet Erinnerungs-Emails an Ersteller und Teilnehmer für Datec Timeline Termine.</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.cleanupTask.name">
+				<source>Datec Timeline - Cleanup Dates Task</source>
+				<target>Datec Timeline - Termine aufräumen Task</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.cleanupTask.description">
+				<source>Delete older date entries from the database to cleanup. CAUTION: this function removes definitely</source>
+				<target>Löschen alter Termine von der Datenbank zum Aufräumen. ACHTUNG: dieser Task entfernt definitiv</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.fields.numberOfDays">
+				<source>Number of days. Dates older (crdate) than X are deleted.</source>
+				<target>Anzahl von Tagen. Termine älter (crdate) als X werden gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="tx_datectimeline.tasks.fields.numberOfDays.invalid">
+				<source>Not a valid Number.</source>
+				<target>Keine valide Nummer.</target>
 			</trans-unit>
 			
 			<trans-unit id="tx_datectimeline.mail.dearSirOrMadam">
+				<source>Dear Sir or Madam,</source>
 				<target>Sehr geehrte/r Dame oder Herr,</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.regards">
+				<source>Have a nice day!</source>
 				<target>Haben Sie einen schönen Tag!</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.reminderSubject">
+				<source>Datec Timeline - Date Reminder</source>
 				<target>Datec Timeline - Terminerinnerung</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.reminderMsg">
+				<source>You have a upcoming date and are either creator or invited partipant.</source>
 				<target>Sie haben einen bevorstehenden Termin und sind entweder Ersteller oder eingeladener Teilnehmer.</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.createSubject">
+				<source>Datec Timeline - Date Created</source>
 				<target>Datec Timeline - Termin erstellt</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.createMsg">
+				<source>The following date was created and you are either creator or invited partipant.</source>
 				<target>Der folgende Termin wurde erstellt und Sie sind entweder Ersteller oder eingeladener Teilnehmer.</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.updateSubject">
+				<source>Datec Timeline - Date Updated</source>
 				<target>Datec Timeline - Termin aktualisiert</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.updateMsg">
+				<source>The following date was updated and you are either creator or invited partipant.</source>
 				<target>Der folgende Termin wurde aktualisiert und Sie sind entweder Ersteller oder eingeladener Teilnehmer.</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.deleteSubject">
+				<source>Datec Timeline - Date Deleted</source>
 				<target>Datec Timeline - Termin entfernt</target>
 			</trans-unit>
 			<trans-unit id="tx_datectimeline.mail.deleteMsg">
+				<source>The following date was deleted and you are either creator or invited partipant.</source>
 				<target>Der folgende Termin wurde entfernt und Sie sind entweder Ersteller oder eingeladener Teilnehmer.</target>
 			</trans-unit>
 			

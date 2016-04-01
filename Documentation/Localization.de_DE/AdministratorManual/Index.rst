@@ -34,8 +34,8 @@ Installation
 4) Fügen sie das Plugin wie beschrieben hinzu
 5) (optional) Fügen Sie für die Erinnerungsmail einen neuen Task zu ihrem Planer hinzu
 
-Plugin hinzufügenInsert Plugin
-------------------------------
+Plugin hinzufügen
+-----------------
 
 1) Fügen Sie ein neues Inhalts Element hinzu, wechseln dort auf den Reiter Plugins und wählen dort Generelles Plugin hinzu
 
@@ -55,10 +55,20 @@ Plugin hinzufügenInsert Plugin
 
 3) (Optional) Setzen der benötigten Zugriffsrechte die Termine sollten nur für bestimmte Benutzergruppen verfügbar sein.
 
-Hinzufügen von eines Errinerungsemail Task
-------------------------------------------
+Hinzufügen des Erinnerungs-Emails Task
+------------------------------------
 
-1) Gehen Sie in das BE-Modul Planer (die Planer Erweiterung muss installiert und konfiguriert sein)
-2) Fügen Sie einen neuen Aufgaben Task mit dem Namen "Datec Timeline - Reminder e-mails task" hinzu
-3) Es ist empfohlen als auf täglich wiederholend (86400 seconds) und die Ausführungszeit auf 0:00 zu stellen
-4) Hinweis die Sprache der Email hängt von der Sprache es _cli_scheduler backend Benutzers ab
+1) Gehen Sie in das BE-Modul Planer (die Planer Erweiterung muss installiert und konfiguriert sein).
+2) Fügen Sie einen neuen Aufgaben Task mit dem Namen "Datec Timeline - Erinnerungs-Emails Task" hinzu.
+3) Es ist empfohlen als auf täglich wiederholend (86400 seconds) und die Ausführungszeit auf 0:00 zu stellen.
+4) Beachten Sie, die Übersetzung der automatischen Mails ist noch nicht vollständig unterstützt.
+
+
+Hinzufügen des Termine aufräumen Task
+-------------------------------------
+
+1) Gehen Sie in das BE-Modul Planer (die Planer Erweiterung muss installiert und konfiguriert sein).
+2) Fügen Sie einen neuen Aufgaben Task mit dem Namen "Datec Timeline - Termine aufräumen Task" hinzu.
+3) Es ist empfohlen als auf täglich wiederholend (86400 seconds).
+4) Geben Sie ebenfalls die Anzahl der Tage ein, nach welcher die Termine zu löschen sind.
+5) Beachten Sie, dass Einträge unwiederruflich gelöscht werden.

@@ -15,12 +15,18 @@ if (!defined('TYPO3_MODE')) {
 	)
 );
 
-// Add caching framework garbage collection task
+// Add tasks
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Datec\DatecTimeline\Task\ReminderTask::class] = array(
 		'extension' => $_EXTKEY,
 		'title' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:tx_datectimeline.tasks.reminderTask.name',
 		'description' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:tx_datectimeline.tasks.reminderTask.description',
 		'additionalFields' => ''
+);
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Datec\DatecTimeline\Task\CleanupTask::class] = array(
+		'extension' => $_EXTKEY,
+		'title' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:tx_datectimeline.tasks.cleanupTask.name',
+		'description' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:tx_datectimeline.tasks.cleanupTask.description',
+		'additionalFields' => \Datec\DatecTimeline\Task\CleanupTaskAdditionalFieldProvider::class
 );
 
 ?>

@@ -59,7 +59,17 @@ Insert Plugin
 Add Reminder E-mail Task
 ------------------------
 
-1) Goto the BE-Mudole scheduler (scheduler extension must be installed and configured).
-2) Add a new scheduler task "Datec Timeline - Reminder e-mails task"
+1) Goto the BE-Module "Scheduler" (scheduler extension must be installed and configured).
+2) Add a new scheduler task "Datec Timeline - Reminder e-mails task".
 3) It is recommended to set a recurring, daily task (86400 seconds) and set the time of execution time to 0:00 am.
-4) Note that the e-mail language depends on the langue setting of the _cli_scheduler backend user.
+4) Note that the e-mail translation is not fully implemented yet.
+
+
+Add Cleanup Dates Task
+----------------------
+
+1) Goto the BE-Module "Scheduler" (scheduler extension must be installed and configured).
+2) Add a new scheduler task "Datec Timeline - Cleanup Dates Task".
+3) It is recommended to set a recurring, daily task (86400 seconds).
+4) Also enter a number of days after which dates should be deleted.
+5) Note that this is a cleanup task, thus all removed entries will be loosed irreversible.

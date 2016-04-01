@@ -5,9 +5,11 @@
 <input type="hidden" id="tx-datec-timeline-dateFormat" value="{settings.display.dateFormat}" />
 <input id="tx-datec-timeline-pageId" type="hidden" name="tx_datectimeline_timeline[pageId]" value="{pageId}" />
 <div id="tx-datec-timeline-filter">
-	<f:if condition="{users}">
-		<f:render partial="FeUser/CreatorsLegend" arguments="{settings:settings, creators:users}" />
-		<f:render partial="FeUser/ParticipantsFilter" arguments="{settings:settings, participants:users}" />
+	<f:if condition="{creators}">
+		<f:render partial="FeUser/CreatorsFilter" arguments="{settings:settings, creators:creators}" />
+	</f:if>
+	<f:if condition="{participants}">
+		<f:render partial="FeUser/ParticipantsFilter" arguments="{settings:settings, participants:participants}" />
 	</f:if>
 </div>
 <span class="tx-datec-timeline-refresh"></span>

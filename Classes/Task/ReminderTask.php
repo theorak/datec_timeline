@@ -48,7 +48,7 @@ class ReminderTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	}
 	
 	/**
-	 * injection of DateRepository
+	 * injection of FeUserRepository
 	 */
 	private function injectFeUserRepository() {
 		$objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);

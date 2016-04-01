@@ -96,5 +96,25 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		return $query->matching($query->logicalAnd($query->logicalAnd($constraints)))->execute();
 	}
 	
+
+
+	/**
+	 * Delete all entries older (crdate) than given date.
+	 * CAUTION: this function removes completely.
+	 * 
+	 * @param int $deleteDate as UNIX timestamp
+	 * @return boolean
+	 */
+	public function cleanupByDate($deleteDate) {
+		// load all feUser IDs from association with date
+		$uids = array();
+		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
+		$table = 'tx_datectimeline_domain_model_date';
+		$where = 'crdate <= '.$deleteDate;
+		$res = $this->databaseConnection->exec_DELETEquery($table, $where);
+
+		return $res;
+	}
+	
 }
 ?>

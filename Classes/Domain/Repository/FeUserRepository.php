@@ -36,11 +36,45 @@ class FeUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUser
 	protected $databaseConnection;
 	
 	/**
-	 * Searches for all frontend users, who have created, or participated in, a date by database relation.
+	 * Searches for all frontend users who create a date by cruser_id.
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|boolean
+	 */
+	public function findCreatorsOfDates() {
+		// load all feUser IDs from association with date
+		$uids = array();
+		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
+		$table = 'tx_datectimeline_domain_model_date';
+		$select = 'cruser_id';
+		$where = '';
+		$groupBy = 'cruser_id';
+		$res = $this->databaseConnection->exec_SELECTquery($select, $table, $where, $groupBy, '', '');
+		if ($res) {
+			while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
+				$uids[] = $row['cruser_id'];
+			}
+		} else {
+			return $res;
+		}
+	
+		if (!empty($uids)) {
+			$query = $this->createQuery();
+			$querySettings = $query->getQuerySettings();
+			$querySettings->setRespectStoragePage(FALSE);
+			$query->setQuerySettings($querySettings);
+			$query->matching($query->in('uid', $uids));
+			return $query->execute();
+		}
+	
+		return FALSE;
+	}
+	
+	/**
+	 * Searches for all frontend users who participated in a date by database relation.
 	 * 
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|boolean
 	 */
-	public function findUsersByRelatedDates() {		
+	public function findParticipantsByRelatedDates() {		
 		// load all feUser IDs from association with date
 		$uids = array();
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
