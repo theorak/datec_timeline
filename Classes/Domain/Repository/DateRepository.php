@@ -61,7 +61,9 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			foreach ($participantIds as $participantId) {
 				$participantConstraints[] = $query->contains('participants', $participantId);
 			}
-			$participantConstraints[] = $query->equals('participants', 0);
+			if (in_array(0, $participantIds)) {
+				$participantConstraints[] = $query->equals('participants', 0);
+			}
 			$constraints[] = $query->logicalOR($participantConstraints);
 		} else {
 			$constraints[] = $query->equals('participants', 0);
